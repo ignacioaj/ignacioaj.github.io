@@ -1,0 +1,31 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Intro from "../components/Intro.astro";
+import Projects from "../components/Projects.astro";
+import WaveDivider from "../components/WaveDivider.astro";
+import Webring from "../components/Webring.astro";
+import About from "../components/About.astro";
+
+// TODO: Fill in your preferences.
+const variables = {
+  name: "Ignacio Atencia Jiménez",
+  subtitles:
+    "And I use Catppuccin colors because this soothing pastel theme looks awesome 💚",
+};
+---
+
+<Layout title={variables.name}>
+  <main>
+    <Intro name={variables.name} subtitle={variables.subtitles} />
+    <WaveDivider color="rosewater" speed={100} size={0.8} direction="left" />
+
+    <About />
+
+    <Projects />
+
+
+
+    <Webring />
+    <WaveDivider color="pink" speed={100} size={0.8} direction="right" />
+  </main>
+</Layout>
