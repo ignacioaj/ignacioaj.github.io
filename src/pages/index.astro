@@ -2,7 +2,8 @@
 import Layout from "../layouts/Layout.astro";
 import Intro from "../components/Intro.astro";
 import Projects from "../components/Projects.astro";
-import WaveDivider from "../components/WaveDivider.astro";
+import SectionDivider from "../components/SectionDivider.astro";
+import IntroDivider from "../components/IntroDivider.astro";
 import Webring from "../components/Webring.astro";
 import About from "../components/About.astro";
 
@@ -17,15 +18,17 @@ const variables = {
 <Layout title={variables.name}>
   <main>
     <Intro name={variables.name} subtitle={variables.subtitles} />
-    <WaveDivider color="rosewater" speed={100} size={0.8} direction="left" />
+
+    <IntroDivider />
 
     <About />
 
+    <SectionDivider />
+
     <Projects />
 
-
+    <SectionDivider />
 
     <Webring />
-    <WaveDivider color="pink" speed={100} size={0.8} direction="right" />
   </main>
 </Layout>

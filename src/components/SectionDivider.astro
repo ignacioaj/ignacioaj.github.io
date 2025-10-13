@@ -1,0 +1,52 @@
+---
+/**
+ * SectionDivider.astro
+ * Un separador elegante para portfolios de Data Science
+ */
+const { text = '>>' } = Astro.props;
+---
+
+<hr class="divider" role="separator" aria-label="section divider" />
+
+<style>
+  .divider {
+    --line-color: rgba(255, 255, 255, 0.15);
+    --symbol-color: #00d1ff; /* color tipo “data” */
+    --symbol: "\\003E\\003E"; /* por defecto >> */
+    position: relative;
+    border: none;
+    height: 1px;
+    background: linear-gradient(
+      to right,
+      transparent,
+      var(--line-color),
+      transparent
+    );
+    margin: 3rem 0;
+  }
+
+  .divider::before {
+    content: "";
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    color: var(--symbol-color);
+    background: var(--astro-bg, #0a0a0a);
+    font-family: 'Fira Code', monospace;
+    font-weight: 500;
+    font-size: 1rem;
+    letter-spacing: 0.15rem;
+    padding: 0 0.75rem;
+    text-shadow: 0 0 8px rgba(0, 209, 255, 0.4);
+  }
+
+  @media (prefers-color-scheme: light) {
+    .divider {
+      --line-color: rgba(0, 0, 0, 0.15);
+      --symbol-color: #0077ff;
+    }
+    .divider::before {
+      background: var(--astro-bg, #fff);
+    }
+  }
+</style>
