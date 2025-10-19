@@ -1,152 +1,95 @@
 ---
 import Card from "../components/Card.astro";
-import TimelineItem from "../components/TimelineItem.astro";
 import EXPERIENCES from "../assets/collections/experiences.json";
-
 const { name, subtitle } = Astro.props;
 ---
-</section id="interests">
-<h2
-      class="text-2xl md:text-4xl font-bold text-white"
-      style="font-family: 'Consolas', monospace;"
-    >
-     Other Interests
-        </h2>
-<article class="flex flex-col md:flex-row gap-4 p-4">
-  <Card className="text-gray-600 dark:text-gray-400 h-fit">
-    <div class="flex flex-col gap-2 text-sm sm:text-base">
-      <h3 class="text-lg sm:text-xl font-semibold text-gray-950 dark:text-white">
-        Short Bio 🧬
-      </h3>
-      <p>
-        I'm an experienced FullStack Web Developer focused on the NestJS and
-        Angular ecosystem. I'm compromised with the quality of the code and
-        the reliability of the websites I build.
-      </p>
-      <p>
-        Currently, I'm developing a personal project called ThemeMarket, a
-        free templates marketplace for developers.
-      </p>
-      <p>
-        I like to share my knowledge with the community so I often make
-        tutorials in my YouTube channel.
-      </p>
-    </div>
-    <div class="flex flex-col gap-2">
-      <h3 class="text-lg sm:text-xl font-semibold text-gray-950 dark:text-white">
-        Want to know a bit more?
-      </h3>
-      <a
-        href="/docs/cv.pdf"
-        role="button"
-        aria-label="Download CV"
-        download
-        class="px-4 py-2 rounded-md bg-blue-600 hover:bg-blue-700 dark:hover:bg-blue-800 dark:bg-blue-700 focus:ring-4 focus:outline-hidden focus:ring-blue-200 dark:focus:ring-blue-950 text-white w-fit font-semibold"
-      >
-        Download CV
-      </a>
-    </div>
-  </Card>
 
-  <Card className="p-8">
-    <ol class="relative border-s border-gray-300 dark:border-neutral-800">
-      {EXPERIENCES.map((experience) => (
-        <TimelineItem
-          title={experience.company}
-          description={experience.description}
-          date={experience.dates}
-        >
-          <div
-            slot="icon"
-            class="size-full p-1"
-            set:html={experience.svgIcon}
-          />
-        </TimelineItem>
-      ))}
-    </ol>
-  </Card>
+<section
+  id="interests"
+  class="relative w-full min-h-[70vh] flex flex-col justify-center bg-center bg-cover"
+  style="
+    background-image:
+      linear-gradient(to bottom, rgba(0,0,0,0.7), rgba(0,0,0,0)),
+      linear-gradient(to top, rgba(0,0,0,0.7), rgba(0,0,0,0)),
+      linear-gradient(to bottom, black 0%, black 20px),
+      url('/fondo-interests.jpg');
+    background-size: cover, cover, 100% 20px, cover;
+    background-position: center, center, bottom, center;
+    background-repeat: no-repeat, no-repeat, no-repeat, no-repeat;
+  "
+>
+  <div class="section-content flex flex-col items-start text-left py-16">
+    <h2 class="text-2xl md:text-4xl font-bold text-white mb-8">
+      Other Interests
+    </h2>
 
-  <Card className="p-6 text-gray-700 dark:text-gray-300">
-    <h3 class="text-lg sm:text-xl font-semibold text-gray-950 dark:text-white mb-2">
-      Fun Facts 🎲
-    </h3>
-    <p>
-      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-    </p>
-    <p>
-      Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-    </p>
-    <p>
-      Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-    </p>
-  </Card>
-</article>
+    <article class="flex flex-col md:flex-row gap-6 w-full max-w-screen-lg items-stretch">
+      <!-- Running -->
+      <Card className="text-gray-600 dark:text-gray-400 flex-1 h-full">
+        <div class="flex flex-col gap-2 text-sm sm:text-base h-full">
+          <h3 class="card-title">Healthy Lifestyle & Science</h3>
+          <p class="card-text">
+            I love maintaining a healthy and active lifestyle. Running is one of my favorite ways to challenge myself and push my limits.
+          </p>
+          <p class="card-text">
+            I am fascinated by science and passionate about continuous learning. Also, teaching and guiding people allows me to communicate complex ideas clearly, combining my curiosity for learning with my desire to inspire others to take care of their physical and mental well-being.
+          </p>
+        </div>
+      </Card>
+
+      <!-- Cooking & Gardening -->
+      <Card className="text-gray-600 dark:text-gray-400 flex-1 h-full">
+        <div class="flex flex-col gap-2 text-sm sm:text-base h-full">
+          <h3 class="card-title">Cooking & Gardening</h3>
+          <p class="card-text">
+            Cooking is another important part of my life. I enjoy exploring dishes from different cultures and improvising my own creations. For me, cooking is a way to connect with memories and experiences.
+          </p>
+          <p class="card-text">
+            Recently, I have started gardening, growing aromatic herbs that I use in my cooking.
+          </p>
+        </div>
+      </Card>
+
+      <!-- Video Games -->
+      <Card className="text-gray-600 dark:text-gray-400 flex-1 h-full">
+        <div class="flex flex-col gap-2 text-sm sm:text-base h-full">
+          <!-- Imagen añadida -->
+          <img src="src/assets/rpg.png" alt="RPG Game" class="w-full h-40 object-cover rounded-md mb-2" />
+
+          <h3 class="card-title">Video Games & Creativity</h3>
+          <p class="card-text">
+            Video games are a way for me to explore my creativity. I mainly play Minecraft, where I enjoy building constructions that expand my cities and designing transportation networks that improve collective experience.
+          </p>
+          <p class="card-text">
+            I am also developing a viking age inspired RPG game, which allows me to create my own universe, bring characters to life, and enhance my skills in drawing, pixel art, map creation, and storytelling.
+          </p>
+        </div>
+      </Card>
+    </article>
+  </div>
 </section>
 
-  <style>
-    .intro {
-      padding: 8rem 2rem 2rem;
-      display: flex;
-      justify-content: center;
+<style>
+  .section-content {
+    @apply w-full max-w-screen-lg mx-auto px-6 md:px-10 lg:px-16;
+  }
+
+  .card-title {
+    color: #40E0D0;
+    font-weight: 600;
+  }
+
+  .card-text {
+    color: #b9b9b9;
+  }
+
+  @media (max-width: 768px) {
+    .section-content {
+      @apply items-center text-center;
     }
 
-    .content {
-      max-width: 600px;
+    .flex-1 {
       width: 100%;
-      display: flex;
-      align-items: center;
-      gap: 2rem;
     }
-
-    .pfp {
-      width: 180px;
-      height: 180px;
-      border-radius: 50%;
-      border: 3px solid var(--ctp-lavender);
-      transition:
-        transform 0.3s ease,
-        border-color 0.3s ease;
-    }
-
-    .pfp:hover {
-      transform: scale(1.05);
-      border-color: var(--ctp-pink);
-    }
-
-    .text {
-      flex: 1;
-    }
-
-    h1 {
-      font-size: 2rem;
-      font-weight: 600;
-      color: var(--ctp-text);
-      margin-bottom: 0.5rem;
-    }
-
-    .subtitle {
-      font-size: 1rem;
-      color: var(--ctp-subtext0);
-      opacity: 0.8;
-    }
-
-    @media (max-width: 600px) {
-      .intro {
-        padding: 4rem 2rem 3rem;
-      }
-
-      .content {
-        flex-direction: column;
-        text-align: center;
-      }
-
-      .pfp {
-        width: 100px;
-        height: 100px;
-      }
-
-      h1 {
-        font-size: 1.5rem;
-      }
-    }
-  </style>
+  }
+</style>

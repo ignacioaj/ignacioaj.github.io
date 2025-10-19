@@ -14,18 +14,17 @@ const { name, subtitle } = Astro.props;
     background-image:
       linear-gradient(to bottom, rgba(0,0,0,0.7), rgba(0,0,0,0)),
       linear-gradient(to top, rgba(0,0,0,0.7), rgba(0,0,0,0)),
+      linear-gradient(to bottom, black 0%, black 20px),
       url('/fondo-about.jpg');
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
+    background-size: cover, cover, 100% 20px, cover;
+    background-position: center, center, bottom, center;
+    background-repeat: no-repeat, no-repeat, no-repeat, no-repeat;
   "
 >
   <div class="section-content flex flex-col items-start text-left py-16">
 
     <!-- Título -->
-    <h2
-      class="text-2xl md:text-4xl font-bold text-white mb-8"
-    >
+    <h2 class="text-2xl md:text-4xl font-bold text-white mb-8">
       About Me
     </h2>
 
@@ -37,6 +36,23 @@ const { name, subtitle } = Astro.props;
           <h2>Who am I?</h2>
           <h1>Hi there! I’m Ignacio</h1>
           <p class="subtitle">{subtitle}</p>
+
+          <!-- Tech stack -->
+          <div class="tech-stack flex flex-wrap gap-4 mt-4">
+            {[
+              { src: "https://www.svgrepo.com/show/452091/python.svg", title: "Python" },
+              { src: "https://www.r-project.org/logo/Rlogo.svg", title: "R" },
+              { src: "https://www.svgrepo.com/show/331760/sql-database-generic.svg", title: "SQL" },
+              { src: "https://upload.wikimedia.org/wikipedia/commons/0/05/Scikit_learn_logo_small.svg", title: "Scikit-learn" },
+              { src: "https://www.svgrepo.com/show/306843/tensorflow.svg", title: "TensorFlow / Keras" },
+              { src: "https://www.svgrepo.com/show/306830/tableau.svg", title: "Tableau" },
+              { src: "https://www.svgrepo.com/show/303548/git-icon-logo.svg", title: "Git" },
+            ].map(tech => (
+              <div class="tech-icon-wrapper" title={tech.title}>
+                <img src={tech.src} alt={tech.title} class="tech-icon" />
+              </div>
+            ))}
+          </div>
         </div>
       </div>
     </section>
@@ -107,10 +123,9 @@ const { name, subtitle } = Astro.props;
     gap: 2rem;
   }
 
-  /* Imagen cuadrada con bordes redondeados y estilo futurista */
   .pfp-square {
     width: 180px;
-    height: 180px; /* cuadrada */
+    height: 180px;
     border-radius: 16px;
     border: 3px solid #40e0d0;
     box-shadow: 0 0 15px rgba(64, 224, 208, 0.6), 0 0 30px rgba(64, 224, 208, 0.3);
@@ -141,13 +156,59 @@ const { name, subtitle } = Astro.props;
     opacity: 0.8;
   }
 
+  /* Tech stack */
+  .tech-stack {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+
+  .tech-icon-wrapper {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+
+    background: rgba(0, 0, 0, 0.4);
+    border: 2px solid rgba(64, 224, 208, 0.8);
+    backdrop-filter: blur(4px);
+    box-shadow:
+      0 0 10px rgba(64, 224, 208, 0.3),
+      inset 0 0 10px rgba(64, 224, 208, 0.15);
+    transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+  }
+
+  .tech-icon-wrapper:hover {
+    transform: scale(1.15);
+    border-color: #ff69b4;
+    box-shadow:
+      0 0 20px rgba(255, 105, 180, 0.5),
+      inset 0 0 10px rgba(64, 224, 208, 0.2);
+  }
+
+  .tech-icon {
+    width: 28px;
+    height: 28px;
+    object-fit: contain;
+    transition: filter 0.3s ease;
+  }
+
+  /* 🎨 Invertir colores de TensorFlow y Tableau */
+  .tech-icon[src*="tensorflow"],
+  .tech-icon[src*="tableau"] {
+    filter: invert(1) hue-rotate(180deg);
+  }
+
   .card-title {
     color: #40E0D0;
     font-weight: 600;
   }
 
   .card-text {
-    color: #b9b9b9; /* Blanco ligeramente gris */
+    color: #b9b9b9;
   }
 
   .btn-turquoise {
@@ -156,7 +217,7 @@ const { name, subtitle } = Astro.props;
     font-weight: 600;
     background-color: #2CA3A3;
     color: white;
-    border-radius: 0.375rem;
+    border-radius: 0.25rem;
     transition: all 0.3s ease;
   }
 
@@ -181,6 +242,16 @@ const { name, subtitle } = Astro.props;
 
     h1 {
       font-size: 1.5rem;
+    }
+
+    .tech-icon-wrapper {
+      width: 50px;
+      height: 50px;
+    }
+
+    .tech-icon {
+      width: 24px;
+      height: 24px;
     }
   }
 </style>

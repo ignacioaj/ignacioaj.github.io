@@ -1,0 +1,169 @@
+---
+import Card from "../components/Card.astro";
+
+interface Props {
+  className?: string;
+  certifications?: { name: string; institution: string; date?: string; logoPath?: string }[];
+  courses?: { name: string; provider: string; date?: string; logoPath?: string }[];
+}
+
+const { className = "", certifications = [], courses = [] } = Astro.props;
+const splitClasses = className.split(" ");
+
+// Ejemplo de certificación si no se proporciona ninguna
+const exampleCertifications = [
+  {
+    name: "SnowPro Core Certification",
+    institution: "Snowflake",
+    date: "2025-10",
+    logoPath: "src/assets/certifications/snowflake.png"
+  },
+];
+
+// Ejemplo de curso si no se proporciona ninguno
+const exampleCourses = [
+  {
+    name: "R Course in Data Science",
+    provider: "University of Málaga",
+    date: "2021-07",
+    logoPath: "https://www.r-project.org/logo/Rlogo.svg"
+  },
+  {
+    name: "Fundamentals of Deep Learning for Computer Vision",
+    provider: "NVIDIA",
+    date: "2020-09",
+    logoPath: "src/assets/certifications/nvidia.png"
+  },
+];
+
+const certificationsList = certifications.length ? certifications : exampleCertifications;
+const coursesList = courses.length ? courses : exampleCourses;
+
+// Generar delay aleatorio para el efecto de brillo
+function randomDelay() {
+  return (Math.random() * 5).toFixed(2) + 's';
+}
+---
+
+<section
+  id="certifications"
+  class="relative w-full flex flex-col items-center justify-center bg-center bg-cover py-16"
+  style="
+    background-image:
+      linear-gradient(to bottom, rgba(0,0,0,0.7), rgba(0,0,0,0)),
+      linear-gradient(to top, rgba(0,0,0,0.7), rgba(0,0,0,0)),
+      url('/fondo-certifications.jpg');
+    background-size: cover, cover, cover;
+    background-position: center, center, center;
+    background-repeat: no-repeat, no-repeat, no-repeat;
+  "
+>
+  <div class="section-content flex flex-col w-full max-w-screen-lg mx-auto px-6 md:px-10 lg:px-16 gap-8">
+
+    <h2 class="text-2xl md:text-4xl font-bold text-white mb-8">Certifications & Courses</h2>
+
+    <!-- CERTIFICATIONS CARD -->
+    <Card className="w-full p-6 flex flex-col gap-4">
+      <h3 class="text-xl font-semibold text-white mb-4">Certifications</h3>
+      <div class="flex flex-wrap gap-6 justify-start">
+        {certificationsList.map(cert => (
+          <div class="cert-card flex flex-col justify-between items-center" style={`--delay: ${randomDelay()}`}>
+            {cert.logoPath && (
+              <img src={cert.logoPath} alt={cert.institution} class="w-16 h-16 object-contain" />
+            )}
+            <div class="text-content flex flex-col gap-1 text-center">
+              <span class="font-bold text-cyan-400">{cert.institution}</span>
+              <span class="font-medium text-white">{cert.name}</span>
+              {cert.date && <span class="text-gray-400 text-sm">{cert.date}</span>}
+            </div>
+          </div>
+        ))}
+      </div>
+    </Card>
+
+    <!-- COURSES CARD -->
+    <Card className="w-full p-6 flex flex-col gap-4">
+      <h3 class="text-xl font-semibold text-white mb-4">Courses</h3>
+      <ul class="flex flex-col gap-2">
+        {coursesList.map(course => (
+          <li class="flex items-center gap-3 text-white">
+            {course.logoPath && (
+              <img src={course.logoPath} alt={course.provider} class="w-10 h-10 object-contain" />
+            )}
+            <div class="flex flex-col">
+              <span class="font-medium">{course.name}</span>
+              <span class="text-gray-400 text-sm">{course.provider} {course.date ? `- ${course.date}` : ""}</span>
+            </div>
+          </li>
+        ))}
+      </ul>
+    </Card>
+
+  </div>
+</section>
+
+<style>
+.cert-card {
+  position: relative;
+  width: 12rem; /* 48 Tailwind */
+  height: 16rem; /* 64 Tailwind */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between; /* Imagen arriba, textos abajo */
+  align-items: center;
+  padding: 1rem; /* 4 Tailwind */
+  background-color: rgba(31, 41, 55, 0.7);
+  border: 1px solid #374151;
+  border-radius: 0.5rem;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+  overflow: hidden; /* Para el brillo */
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.cert-card:hover {
+  transform: scale(1.05);
+  box-shadow: 0 10px 20px rgba(0,0,0,0.4);
+}
+
+/* Contenedor de textos */
+.text-content {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem; /* textos juntos entre sí */
+  text-align: center;
+}
+
+/* Efecto de brillo metálico */
+.cert-card::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -50%;
+  width: 50%;
+  height: 100%;
+  background: linear-gradient(
+    120deg,
+    rgba(255,255,255,0) 0%,
+    rgba(255,255,255,0.3) 50%,
+    rgba(255,255,255,0) 100%
+  );
+  transform: skewX(-20deg);
+  pointer-events: none;
+  animation: shine 3s ease-in-out infinite;
+  animation-delay: var(--delay);
+}
+
+@keyframes shine {
+  0% {
+    left: -50%;
+    opacity: 0;
+  }
+  40% {
+    opacity: 1;
+  }
+  100% {
+    left: 150%;
+    opacity: 0;
+  }
+}
+</style>

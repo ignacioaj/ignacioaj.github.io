@@ -1,10 +1,24 @@
 ---
-// Divider.astro
-// Componente divisor de secciones con 0 y 1 sin fondo y números más finos.
+export interface Props {
+  sequence: string;
+}
+
+const { sequence } = Astro.props;
+const length = sequence.length;
+const center = (length - 1) / 2;
+
+// Función para generar color turquesa -> negro según la posición
+const getColor = (i: number) => {
+  const distance = Math.abs(i - center) / center; // 0 en el centro, 1 en extremos
+  const lightness = 100 - 70 * distance; // 100% en centro, 30% en extremos
+  return `hsl(180, 100%, ${lightness}%)`;
+};
 ---
 
 <div class="divider">
-  <span>0</span><span>1</span><span>0</span><span>1</span><span>0</span><span>1</span><span>0</span><span>1</span>
+  {sequence.split("").map((char, i) => (
+    <span style={`color: ${getColor(i)}`}>{char}</span>
+  ))}
 </div>
 
 <style>
@@ -13,20 +27,16 @@
   justify-content: center;
   gap: 0.5rem;
   padding: 2rem 0;
-  /* Eliminamos el fondo */
-  background: transparent;
-  font-weight: normal; /* números más finos */
   font-family: monospace;
-  color: #000000; /* opcional: puedes cambiar el color si quieres que contraste más */
   font-size: 1.5rem;
 }
 
 .divider span {
-  animation: float 2s infinite alternate;
+  transition: transform 0.2s ease, color 0.2s ease;
 }
 
-@keyframes float {
-  0% { transform: translateY(0); }
-  100% { transform: translateY(-10px); }
+.divider span:hover {
+  transform: scale(1.4);
+  color: hsl(180, 100%, 70%);
 }
 </style>
