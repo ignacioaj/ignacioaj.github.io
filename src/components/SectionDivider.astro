@@ -1,52 +1,32 @@
 ---
-/**
- * SectionDivider.astro
- * Un separador elegante para portfolios de Data Science
- */
-const { text = '>>' } = Astro.props;
+// Divider.astro
+// Componente divisor de secciones con 0 y 1 sin fondo y números más finos.
 ---
 
-<hr class="divider" role="separator" aria-label="section divider" />
+<div class="divider">
+  <span>0</span><span>1</span><span>0</span><span>1</span><span>0</span><span>1</span><span>0</span><span>1</span>
+</div>
 
 <style>
-  .divider {
-    --line-color: rgba(255, 255, 255, 0.15);
-    --symbol-color: #00d1ff; /* color tipo “data” */
-    --symbol: "\\003E\\003E"; /* por defecto >> */
-    position: relative;
-    border: none;
-    height: 1px;
-    background: linear-gradient(
-      to right,
-      transparent,
-      var(--line-color),
-      transparent
-    );
-    margin: 3rem 0;
-  }
+.divider {
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 2rem 0;
+  /* Eliminamos el fondo */
+  background: transparent;
+  font-weight: normal; /* números más finos */
+  font-family: monospace;
+  color: #000000; /* opcional: puedes cambiar el color si quieres que contraste más */
+  font-size: 1.5rem;
+}
 
-  .divider::before {
-    content: "";
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
-    color: var(--symbol-color);
-    background: var(--astro-bg, #0a0a0a);
-    font-family: 'Fira Code', monospace;
-    font-weight: 500;
-    font-size: 1rem;
-    letter-spacing: 0.15rem;
-    padding: 0 0.75rem;
-    text-shadow: 0 0 8px rgba(0, 209, 255, 0.4);
-  }
+.divider span {
+  animation: float 2s infinite alternate;
+}
 
-  @media (prefers-color-scheme: light) {
-    .divider {
-      --line-color: rgba(0, 0, 0, 0.15);
-      --symbol-color: #0077ff;
-    }
-    .divider::before {
-      background: var(--astro-bg, #fff);
-    }
-  }
+@keyframes float {
+  0% { transform: translateY(0); }
+  100% { transform: translateY(-10px); }
+}
 </style>

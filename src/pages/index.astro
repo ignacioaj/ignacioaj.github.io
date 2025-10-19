@@ -1,34 +1,21 @@
 ---
 import Layout from "../layouts/Layout.astro";
 import Intro from "../components/Intro.astro";
-import Projects from "../components/Projects.astro";
-import SectionDivider from "../components/SectionDivider.astro";
-import IntroDivider from "../components/IntroDivider.astro";
-import Webring from "../components/Webring.astro";
 import About from "../components/About.astro";
-
-// TODO: Fill in your preferences.
-const variables = {
-  name: "Ignacio Atencia Jiménez",
-  subtitles:
-    "And I use Catppuccin colors because this soothing pastel theme looks awesome 💚",
-};
+import Projects from "../components/Projects.astro";
+import Interests from "../components/Interests.astro";
+import IntroDivider from "../components/IntroDivider.astro";
 ---
 
-<Layout title={variables.name}>
-  <main>
-    <Intro name={variables.name} subtitle={variables.subtitles} />
+<Layout title="Ignacio Atencia Jiménez">
+  <!-- Sección full-width con fondo -->
+  <Intro slot="fullwidth" />
 
-    <IntroDivider />
 
-    <About />
-
-    <SectionDivider />
-
-    <Projects />
-
-    <SectionDivider />
-
-    <Webring />
-  </main>
+  <!-- Contenido normal dentro del main limitado en ancho -->
+  <About slot="fullwidth"/>
+   <IntroDivider slot="divider"/>
+  <Projects slot="fullwidth"/>
+   <IntroDivider slot="divider"/>
+  <Interests />
 </Layout>

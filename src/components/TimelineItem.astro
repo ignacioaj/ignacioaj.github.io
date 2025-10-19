@@ -31,9 +31,24 @@ const { title, date, description, badgeText } = Astro.props;
     >{date}</time
   >
   <p
-    class="mb-4 text-sm sm:text-base font-normal text-gray-600 dark:text-gray-400"
+    class="mb-4 text-sm sm:text-base font-normal text-white"
   >
     {description}
   </p>
   <slot name="extra-content" />
 </li>
+
+<style>
+  /* Cambiamos colores de los textos según tus especificaciones */
+  h3 {
+    color: #40E0D0; /* título en turquesa */
+  }
+
+  time {
+    color: #ffffff; /* blanco ligeramente gris */
+  }
+
+  p {
+    color: #b9b9b9; /* blanco ligeramente gris */
+  }
+</style>

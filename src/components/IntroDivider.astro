@@ -1,30 +1,43 @@
-<div class="divider"></div>
+---
+// Divider.astro
+// Ristra de 0 y 1, números bailando, color #8799ae, desvanecimiento en extremos
+---
+
+<div class="divider">
+  <span style="--i:0">0</span>
+  <span style="--i:1">1</span>
+  <span style="--i:2">0</span>
+  <span style="--i:3">1</span>
+  <span style="--i:4">0</span>
+  <span style="--i:5">1</span>
+  <span style="--i:6">0</span>
+  <span style="--i:7">1</span>
+  <span style="--i:8">0</span>
+  <span style="--i:9">1</span>
+  <span style="--i:10">0</span>
+  <span style="--i:11">1</span>
+</div>
 
 <style>
-  .divider {
-    width: 100%;
-    height: 5px;
-    border-radius: 3px;
-    margin: 4rem 0;
-    background: linear-gradient(
-      90deg,
-      rgba(0, 209, 255, 0),
-      rgba(0, 209, 255, 0.8),
-      rgba(0, 209, 255, 0)
-    );
-    box-shadow: 0 0 12px rgba(0, 209, 255, 0.3);
-  }
+.divider {
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 2rem 0;
+  font-family: monospace;
+  font-size: 1.5rem;
+}
 
-  /* Modo claro */
-  @media (prefers-color-scheme: light) {
-    .divider {
-      background: linear-gradient(
-        90deg,
-        rgba(0, 119, 255, 0),
-        rgba(0, 119, 255, 0.7),
-        rgba(0, 119, 255, 0)
-      );
-      box-shadow: 0 0 8px rgba(0, 119, 255, 0.25);
-    }
-  }
+.divider span {
+  color: #8799ae;
+  animation: float 2s infinite alternate;
+
+  /* Calculamos la opacidad según la posición */
+  opacity: calc(0.2 + 0.8 * (1 - abs(var(--i) - 5) / 6));
+}
+
+@keyframes float {
+  0% { transform: translateY(0); }
+  100% { transform: translateY(-10px); }
+}
 </style>
