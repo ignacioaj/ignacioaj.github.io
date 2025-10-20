@@ -1,6 +1,5 @@
 import { defineConfig, envField } from "astro/config";
-import tailwind from '@astrojs/tailwind';
-import vercel from "@astrojs/vercel";
+import tailwind from "@astrojs/tailwind";
 
 export default defineConfig({
   vite: {
@@ -12,6 +11,7 @@ export default defineConfig({
       MY_EMAIL: envField.string({ context: "server", access: "secret" }),
     },
   },
-  output: "server",
-  adapter: vercel(),
+  site: "https://tuusuario.github.io/tu-repo",
+  base: "/tu-repo/",
+  output: "static",
 });
