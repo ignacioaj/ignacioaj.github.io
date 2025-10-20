@@ -16,13 +16,9 @@ import PROJECTS from "../assets/collections/projects.json";
   <!-- Contenedor centrado y limitado en ancho -->
   <div class="section-content flex flex-col items-center justify-center text-center py-16">
 
-
-  <h2
-    class="text-2xl md:text-4xl font-bold text-white"
-    style="font-family: 'Consolas', monospace;"
-  >
-    Projects
-  </h2>
+    <h2 class="text-2xl md:text-4xl font-bold text-white mb-8">
+      Projects
+    </h2>
 
   <div class="p-4 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
     {PROJECTS.filter((__, i) => i < 3).map((project) => {
