@@ -11,7 +11,6 @@ export default defineConfig({
       MY_EMAIL: envField.string({ context: "server", access: "secret" }),
     },
   },
-  site: "https://tuusuario.github.io/tu-repo",
-  base: "/tu-repo/",
+  site: "https://ignacioaj.github.io",
   output: "static",
 });
