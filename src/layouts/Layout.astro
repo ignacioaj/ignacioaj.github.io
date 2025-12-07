@@ -1,7 +1,7 @@
 ---
-// Layout.astro
 import Footer from "../components/Footer.astro";
 import Navbar from "../components/Navbar.astro";
+import ScrollTop from "../components/ScrollTop.astro";
 import "../styles/global.css";
 ---
 <!DOCTYPE html>
@@ -21,6 +21,9 @@ import "../styles/global.css";
     <slot />
 
     <Footer />
+
+    <!-- Componente que gestiona el scroll to top -->
+    <ScrollTop />
 
     <style is:global>
       html, body {

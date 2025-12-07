@@ -1,0 +1,93 @@
+---
+/*
+  ScrollTop.astro
+  - Hidratación en cliente con client:idle (se carga cuando el navegador está idle)
+  - Muestra el botón después de 300px de scroll
+  - Smooth scroll al top al hacer click
+  - Accesible (aria-label) y con estilos que puedes adaptar
+*/
+---
+<button id="scroll-top-btn" aria-label="Subir al inicio" title="Subir al inicio">
+  <!-- Puedes poner aquí un SVG en vez de la flecha -->
+  ⬆
+</button>
+
+<script type="module" client:idle>
+  // Código que sólo se ejecuta en el cliente después de la hidratación (client:idle)
+  const btn = document.getElementById('scroll-top-btn');
+
+  if (!btn) throw new Error('ScrollTop: botón no encontrado');
+
+  // estilos iniciales (en caso de que CSS tarde en cargar)
+  btn.style.opacity = '0';
+  btn.style.pointerEvents = 'none';
+  btn.style.transform = 'translateY(20px)';
+
+  const SHOW_AFTER = 300; // px
+
+  const updateVisibility = () => {
+    if (window.scrollY > SHOW_AFTER) {
+      btn.style.opacity = '1';
+      btn.style.pointerEvents = 'auto';
+      btn.style.transform = 'translateY(0)';
+    } else {
+      btn.style.opacity = '0';
+      btn.style.pointerEvents = 'none';
+      btn.style.transform = 'translateY(20px)';
+    }
+  };
+
+  // ejecutar al inicio por si ya estamos scrolleados (p. ej. al cargar una ruta interna)
+  updateVisibility();
+
+  // escuchar scroll (passive para mejor performance)
+  window.addEventListener('scroll', updateVisibility, { passive: true });
+
+  // click -> smooth scroll to top
+  btn.addEventListener('click', (e) => {
+    e.preventDefault();
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+</script>
+
+<style>
+  /* Estilos encapsulados del componente */
+  #scroll-top-btn {
+    position: fixed;
+    right: 20px;
+    bottom: 20px;
+    width: 48px;
+    height: 48px;
+    border-radius: 9999px;
+    border: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255, 255, 255, 0.06); /* ligero contraste sobre fondo oscuro */
+    color: #fff;
+    font-size: 1.15rem;
+    cursor: pointer;
+    z-index: 9999;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.6);
+    transition: opacity 220ms ease, transform 220ms ease;
+    /* Empieza oculto (el script asegura esto también) */
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(20px);
+    backdrop-filter: blur(6px); /* elegante sobre fondos con imagen */
+  }
+
+  #scroll-top-btn:hover {
+    transform: translateY(-3px);
+    opacity: 1;
+  }
+
+  /* touch target y accesibilidad */
+  @media (hover: none) {
+    #scroll-top-btn {
+      width: 56px;
+      height: 56px;
+      font-size: 1.25rem;
+    }
+  }
+</style>
