@@ -3,6 +3,7 @@ import Card from "../components/Card.astro";
 import EXPERIENCES from "../assets/collections/experiences.json";
 const { name, subtitle } = Astro.props;
 ---
+
 <section
   id="interests"
   class="relative w-full min-h-[70vh] flex flex-col justify-center bg-center bg-cover overflow-hidden"
@@ -27,7 +28,7 @@ const { name, subtitle } = Astro.props;
     <article class="grid gap-8 md:grid-cols-3 w-full">
 
       <!-- Healthy Lifestyle & Science -->
-      <Card className="text-gray-600 dark:text-gray-400 flex flex-col transform transition-transform duration-300 hover:scale-105">
+      <Card className="flex flex-col transform transition-transform duration-300 hover:scale-105">
         <img src="src/assets/healthy.jpg" alt="Healthy Lifestyle" class="w-full h-48 object-cover rounded-md mb-4 transition-transform duration-300 hover:scale-110" />
         <h3 class="card-title mb-2">Healthy Lifestyle & Science</h3>
         <p class="card-text mb-2">
@@ -39,7 +40,7 @@ const { name, subtitle } = Astro.props;
       </Card>
 
       <!-- Cooking & Gardening -->
-      <Card className="text-gray-600 dark:text-gray-400 flex flex-col transform transition-transform duration-300 hover:scale-105">
+      <Card className="flex flex-col transform transition-transform duration-300 hover:scale-105">
         <img src="src/assets/cuisine.jpg" alt="Cooking & Gardening" class="w-full h-48 object-cover rounded-md mb-4 transition-transform duration-300 hover:scale-110" />
         <h3 class="card-title mb-2">Cooking & Gardening</h3>
         <p class="card-text mb-2">
@@ -51,7 +52,7 @@ const { name, subtitle } = Astro.props;
       </Card>
 
       <!-- Video Games & Creativity -->
-      <Card className="text-gray-600 dark:text-gray-400 flex flex-col transform transition-transform duration-300 hover:scale-105">
+      <Card className="flex flex-col transform transition-transform duration-300 hover:scale-105">
         <img src="src/assets/rpg.png" alt="RPG Game" class="w-full h-48 object-cover rounded-md mb-4 transition-transform duration-300 hover:scale-110" />
         <h3 class="card-title mb-2">Video Games & Creativity</h3>
         <p class="card-text mb-2">
@@ -66,3 +67,13 @@ const { name, subtitle } = Astro.props;
   </div>
 </section>
 
+<style>
+  .card-title {
+    color: #40E0D0;
+    font-weight: 600;
+  }
+
+  .card-text {
+    color: #b9b9b9;
+  }
+</style>
