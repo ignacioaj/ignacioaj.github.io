@@ -2,7 +2,7 @@ import { defineConfig, envField } from "astro/config";
 import tailwind from "@astrojs/tailwind";
 
 export default defineConfig({
-  integrations: [tailwind()], // <-- corregido aquí
+  integrations: [tailwind()],
 
   env: {
     schema: {
