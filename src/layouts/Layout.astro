@@ -30,10 +30,17 @@ import "../styles/global.css";
         margin: 0;
         padding: 0;
         box-sizing: border-box;
+
+        /* Evita rebote de scroll y scroll horizontal extra */
+        overscroll-behavior: none;
+        overflow-x: hidden; /* No scroll horizontal */
+        min-height: 100%;
       }
+
       *, *::before, *::after {
         box-sizing: inherit;
       }
+
       * {
         scroll-behavior: smooth;
       }
