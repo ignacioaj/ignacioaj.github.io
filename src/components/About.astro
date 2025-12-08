@@ -63,11 +63,22 @@ const { name, subtitle } = Astro.props;
         <div class="flex flex-col gap-2 text-sm sm:text-base">
           <h3 class="card-title">Short Bio</h3>
           <p class="card-text">
-            I’m a Biomedical Engineer fascinated by how the human body works – from tiny molecules to complex organ systems. I love solving problems with code, whether it’s analyzing medical data, processing images, or exploring AI applications in healthcare.
+            I’m a Biomedical Engineer fascinated by the human body – from molecules to complex organ systems – and by the ways technology can help us understand and improve it. I enjoy solving problems with code, whether analyzing medical data, processing images, or exploring AI applications in healthcare.
             <br /><br />
-            Outside of work, you’ll probably find me experimenting with new tech projects, diving into data science, or learning something new about biology. Currently, I’m enjoying my journey as a Junior Software Specialist at Vodafone Intelligent Solutions, blending my love for medicine and tech every day.
-          </p>
+            I graduated in Biomedical Engineering from the University of Málaga, balancing strong academics with hands-on experiences that shaped my professional path.
+            <br /><br />
+            During an Erasmus in Finland, I had the chance to worked with EEG and ECG signals for pathology detection, which sparked my interest in signal processing. In My bachelor’s, I applied AI techniques to identify radiation-induced chromosomal abnormalities in micrographs.
+            <br /><br />
+            I aim to continue growing in the medical technology field, particularly in medical data science, imaging, and AI-driven solutions that support and improve healthcare.
+            <br /><br />
+            </p>
+
+          <!-- Firma al final -->
+          <div class="signature">
+            Ignacio
+          </div>
         </div>
+        <br /><br />
 
         <div class="flex flex-col gap-2 mt-4">
           <h3 class="card-title">Want to know a bit more?</h3>
@@ -84,6 +95,7 @@ const { name, subtitle } = Astro.props;
       </Card>
 
       <Card className="p-8 flex-1">
+      <h3 class="card-title mb-4">My Experiences</h3>
         <ol class="relative border-s border-gray-300 dark:border-neutral-800">
           {
             EXPERIENCES.map((experience) => (
@@ -107,7 +119,7 @@ const { name, subtitle } = Astro.props;
 </section>
 
 <style>
-  @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@700&family=Roboto:wght@400&display=swap');
+  @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@700&family=Roboto:wght@400&family=Allura&display=swap');
 
   .section-content {
     @apply w-full max-w-screen-lg mx-auto px-6 md:px-10 lg:px-16;
@@ -225,6 +237,16 @@ const { name, subtitle } = Astro.props;
     background-color: #33cfcf;
   }
 
+  /* Firma al final del Short Bio */
+  .signature {
+    font-family: 'Allura', cursive;
+    font-size: 1.65rem;
+    color: white;
+    text-align: right;
+    margin-top: 1rem;
+    opacity: 0.9;
+  }
+
   @media (max-width: 768px) {
     .section-content {
       @apply items-center text-center;
@@ -252,6 +274,10 @@ const { name, subtitle } = Astro.props;
     .tech-icon {
       width: 24px;
       height: 24px;
+    }
+
+    .signature {
+      text-align: center;
     }
   }
 </style>
