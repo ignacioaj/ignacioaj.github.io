@@ -1,42 +1,92 @@
 ---
-export interface Props {
-  sequence: string;
+interface Props {
+  width?: number;
+  height?: number;
+  cycles?: number;
 }
 
-const { sequence } = Astro.props;
-const length = sequence.length;
-const center = (length - 1) / 2;
+const { width = 800, height = 120, cycles = 3 } = Astro.props;
 
-// Función para generar color turquesa -> negro según la posición
-const getColor = (i: number) => {
-  const distance = Math.abs(i - center) / center; // 0 en el centro, 1 en extremos
-  const lightness = 100 - 70 * distance; // 100% en centro, 30% en extremos
-  return `hsl(180, 100%, ${lightness}%)`;
-};
+const pointsPerCycle = 200;
+const totalPoints = pointsPerCycle * cycles;
+
+function generateCycle() {
+  const segment = [];
+  for (let i = 0; i < pointsPerCycle; i++) {
+    const t = i / pointsPerCycle;
+    let y = 0.5;
+
+    if (t < 0.1) {
+      y += 0.04 * Math.sin(Math.PI * t / 0.1); // P
+    } else if (t < 0.2) {
+      y -= 0.18 * Math.sin(Math.PI * (t - 0.1) / 0.1); // Q
+    } else if (t < 0.25) {
+      y += 0.35 * Math.sin(Math.PI * (t - 0.2) / 0.05); // R
+    } else if (t < 0.3) {
+      y -= 0.22 * Math.sin(Math.PI * (t - 0.25) / 0.05); // S
+    } else if (t < 0.45) {
+      y += 0.12 * Math.sin(Math.PI * (t - 0.3) / 0.15); // T
+    } else if (t < 0.55) {
+      y += 0.03 * Math.sin(Math.PI * (t - 0.45) / 0.1); // U
+    }
+
+    segment.push(y);
+  }
+  return segment;
+}
+
+let ecg = [];
+for (let i = 0; i < cycles; i++) {
+  ecg = ecg.concat(generateCycle());
+}
+
+const pathD = ecg.map((p, i) => {
+  const x = (i / (totalPoints - 1)) * width;
+  const y = height * (1 - p);
+  if (i === 0) return `M ${x} ${y}`;
+
+  const t = (i % pointsPerCycle) / pointsPerCycle;
+  if (t >= 0.2 && t < 0.3) {
+    return `L ${x} ${y}`; // picos QRS lineales
+  } else {
+    const prev = ecg[i - 1];
+    const prevX = ((i - 1) / (totalPoints - 1)) * width;
+    const prevY = height * (1 - prev);
+    const cx = (prevX + x) / 2;
+    const cy = (prevY + y) / 2;
+    return `Q ${prevX} ${prevY} ${cx} ${cy}`;
+  }
+}).join(' ');
 ---
 
-<div class="divider">
-  {sequence.split("").map((char, i) => (
-    <span style={`color: ${getColor(i)}`}>{char}</span>
-  ))}
-</div>
+<svg viewBox={`0 0 ${width} ${height}`} class="ecg-svg">
+  <defs>
+    <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="4" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+  <path d={pathD} stroke="#0ff" stroke-width="3" fill="none" stroke-linecap="round" filter="url(#glow)"/>
+</svg>
 
 <style>
-.divider {
-  display: flex;
-  justify-content: center;
-  gap: 0.5rem;
-  padding: 2rem 0;
-  font-family: monospace;
-  font-size: 1.5rem;
+.ecg-svg {
+  width: 100%;
+  height: 120px;
+  background: #000; /* fondo negro plano */
+  border-radius: 16px;
+  box-shadow: 0 0 20px #0ff, 0 0 40px #0ff66;
+  stroke-dasharray: 2000;
+  stroke-dashoffset: 2000;
+  animation: ecg-draw 2s linear infinite;
 }
 
-.divider span {
-  transition: transform 0.2s ease, color 0.2s ease;
-}
-
-.divider span:hover {
-  transform: scale(1.4);
-  color: hsl(180, 100%, 70%);
+@keyframes ecg-draw {
+  0% { stroke-dashoffset: 2000; }
+  50% { stroke-dashoffset: 0; }
+  100% { stroke-dashoffset: -2000; }
 }
 </style>

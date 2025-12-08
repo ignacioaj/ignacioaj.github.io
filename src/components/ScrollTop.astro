@@ -1,29 +1,30 @@
 ---
 /*
   ScrollTop.astro
-  - Hidratación en cliente con client:idle (se carga cuando el navegador está idle)
-  - Muestra el botón después de 300px de scroll
+  - Hidratación en cliente con client:idle
+  - Botón visible después de 300px de scroll
   - Smooth scroll al top al hacer click
-  - Accesible (aria-label) y con estilos que puedes adaptar
+  - Icono SVG turquesa
+  - Accesible con aria-label y title
 */
 ---
 <button id="scroll-top-btn" aria-label="Subir al inicio" title="Subir al inicio">
-  <!-- Puedes poner aquí un SVG en vez de la flecha -->
-  ⬆
+  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="#2CA3A3" viewBox="0 0 24 24">
+    <path d="M12 4l-8 8h6v8h4v-8h6z"/>
+  </svg>
 </button>
 
 <script type="module" client:idle>
-  // Código que sólo se ejecuta en el cliente después de la hidratación (client:idle)
   const btn = document.getElementById('scroll-top-btn');
 
   if (!btn) throw new Error('ScrollTop: botón no encontrado');
 
-  // estilos iniciales (en caso de que CSS tarde en cargar)
+  // estilos iniciales
   btn.style.opacity = '0';
   btn.style.pointerEvents = 'none';
   btn.style.transform = 'translateY(20px)';
 
-  const SHOW_AFTER = 300; // px
+  const SHOW_AFTER = 300;
 
   const updateVisibility = () => {
     if (window.scrollY > SHOW_AFTER) {
@@ -37,13 +38,9 @@
     }
   };
 
-  // ejecutar al inicio por si ya estamos scrolleados (p. ej. al cargar una ruta interna)
   updateVisibility();
-
-  // escuchar scroll (passive para mejor performance)
   window.addEventListener('scroll', updateVisibility, { passive: true });
 
-  // click -> smooth scroll to top
   btn.addEventListener('click', (e) => {
     e.preventDefault();
     window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -51,7 +48,6 @@
 </script>
 
 <style>
-  /* Estilos encapsulados del componente */
   #scroll-top-btn {
     position: fixed;
     right: 20px;
@@ -63,31 +59,36 @@
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    background: rgba(255, 255, 255, 0.06); /* ligero contraste sobre fondo oscuro */
-    color: #fff;
-    font-size: 1.15rem;
+    background: rgba(255, 255, 255, 0.06);
     cursor: pointer;
     z-index: 9999;
     box-shadow: 0 6px 18px rgba(0,0,0,0.6);
-    transition: opacity 220ms ease, transform 220ms ease;
-    /* Empieza oculto (el script asegura esto también) */
+    transition: opacity 220ms ease, transform 220ms ease, box-shadow 220ms ease;
     opacity: 0;
     pointer-events: none;
     transform: translateY(20px);
-    backdrop-filter: blur(6px); /* elegante sobre fondos con imagen */
+    backdrop-filter: blur(6px);
   }
 
-  #scroll-top-btn:hover {
+  #scroll-top-btn svg {
+    transition: transform 220ms ease, fill 220ms ease;
+    display: block;
+  }
+
+  #scroll-top-btn:hover svg {
     transform: translateY(-3px);
-    opacity: 1;
+    fill: #2CA3A3; /* turquesa hover */
   }
 
-  /* touch target y accesibilidad */
   @media (hover: none) {
     #scroll-top-btn {
       width: 56px;
       height: 56px;
-      font-size: 1.25rem;
+    }
+
+    #scroll-top-btn svg {
+      width: 28px;
+      height: 28px;
     }
   }
 </style>

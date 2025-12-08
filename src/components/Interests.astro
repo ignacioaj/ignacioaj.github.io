@@ -18,72 +18,91 @@ const { name, subtitle } = Astro.props;
     background-repeat: no-repeat, no-repeat, no-repeat, no-repeat;
   "
 >
-  <div class="section-content flex flex-col items-start text-left py-16">
-    <h2 class="text-2xl md:text-4xl font-bold text-white mb-8">
+  <div class="section-content flex flex-col items-center text-center px-4 py-16 md:py-24 max-w-6xl w-full">
+
+    <!-- Título -->
+    <h2 class="text-3xl md:text-5xl font-bold text-white mb-12 title-futuristic">
       Other Interests
     </h2>
 
-    <article class="flex flex-col md:flex-row gap-6 w-full max-w-screen-lg items-stretch">
-      <!-- Running -->
-      <Card className="text-gray-600 dark:text-gray-400 flex-1 h-full">
-        <div class="flex flex-col gap-2 text-sm sm:text-base h-full">
-          <h3 class="card-title">Healthy Lifestyle & Science</h3>
-          <p class="card-text">
-            I love maintaining a healthy and active lifestyle. Running is one of my favorite ways to challenge myself and push my limits.
-          </p>
-          <p class="card-text">
-            I am fascinated by science and passionate about continuous learning. Also, teaching and guiding people allows me to communicate complex ideas clearly, combining my curiosity for learning with my desire to inspire others to take care of their physical and mental well-being.
-          </p>
-        </div>
+    <article class="grid gap-8 md:grid-cols-3 w-full">
+
+      <!-- Healthy Lifestyle & Science -->
+      <Card className="text-gray-600 dark:text-gray-400 flex flex-col transform transition-transform duration-300 hover:scale-105">
+        <img src="src/assets/healthy.jpg" alt="Healthy Lifestyle" class="w-full h-48 object-cover rounded-md mb-4 transition-transform duration-300 hover:scale-110" />
+        <h3 class="card-title mb-2">Healthy Lifestyle & Science</h3>
+        <p class="card-text mb-2">
+          I love maintaining a healthy and active lifestyle. Running is one of my favorite ways to challenge myself and push my limits.
+        </p>
+        <p class="card-text">
+          I am fascinated by science and passionate about continuous learning. Teaching and guiding people allows me to communicate complex ideas clearly, combining curiosity with inspiration.
+        </p>
       </Card>
 
       <!-- Cooking & Gardening -->
-      <Card className="text-gray-600 dark:text-gray-400 flex-1 h-full">
-        <div class="flex flex-col gap-2 text-sm sm:text-base h-full">
-        <!-- Imagen añadida -->
-                  <img src="src/assets/cuisine.jpg" alt="RPG Game" class="w-full h-40 object-cover rounded-md mb-2" />
-
-          <h3 class="card-title">Cooking & Gardening</h3>
-          <p class="card-text">
-            Cooking is another important part of my life. I enjoy exploring dishes from different cultures and improvising my own creations. For me, cooking is a way to connect with memories and experiences.
-          </p>
-          <p class="card-text">
-            Recently, I have started gardening, growing aromatic herbs that I use in my cooking.
-          </p>
-        </div>
+      <Card className="text-gray-600 dark:text-gray-400 flex flex-col transform transition-transform duration-300 hover:scale-105">
+        <img src="src/assets/cuisine.jpg" alt="Cooking & Gardening" class="w-full h-48 object-cover rounded-md mb-4 transition-transform duration-300 hover:scale-110" />
+        <h3 class="card-title mb-2">Cooking & Gardening</h3>
+        <p class="card-text mb-2">
+          Cooking is a way to explore cultures and create memories. Improvising dishes helps me connect with my experiences.
+        </p>
+        <p class="card-text">
+          Gardening aromatic herbs recently has complemented my cooking, bringing freshness and personal touch to my meals.
+        </p>
       </Card>
 
-      <!-- Video Games -->
-      <Card className="text-gray-600 dark:text-gray-400 flex-1 h-full">
-        <div class="flex flex-col gap-2 text-sm sm:text-base h-full">
-          <!-- Imagen añadida -->
-          <img src="src/assets/rpg.png" alt="RPG Game" class="w-full h-40 object-cover rounded-md mb-2" />
-
-          <h3 class="card-title">Video Games & Creativity</h3>
-          <p class="card-text">
-            Video games are a way for me to explore my creativity. I mainly play Minecraft, where I enjoy building constructions that expand my cities and designing transportation networks that enhance connections between locations.
-          </p>
-          <p class="card-text">
-            I am also developing a viking age inspired RPG game, which allows me to create my own universe, bring characters to life, and enhance my skills in drawing, pixel art, map creation, and storytelling.
-          </p>
-        </div>
+      <!-- Video Games & Creativity -->
+      <Card className="text-gray-600 dark:text-gray-400 flex flex-col transform transition-transform duration-300 hover:scale-105">
+        <img src="src/assets/rpg.png" alt="RPG Game" class="w-full h-48 object-cover rounded-md mb-4 transition-transform duration-300 hover:scale-110" />
+        <h3 class="card-title mb-2">Video Games & Creativity</h3>
+        <p class="card-text mb-2">
+          Video games allow me to unleash creativity. In Minecraft, I build cities and transportation networks, expanding my virtual world.
+        </p>
+        <p class="card-text">
+          Developing a Viking-inspired RPG lets me design a universe, create characters, improve drawing, pixel art, map-making, and storytelling skills.
+        </p>
       </Card>
+
     </article>
   </div>
 </section>
 
 <style>
   .section-content {
-    @apply w-full max-w-screen-lg mx-auto px-6 md:px-10 lg:px-16;
+    @apply w-full mx-auto px-6 md:px-10 lg:px-16;
   }
 
   .card-title {
     color: #40E0D0;
     font-weight: 600;
+    font-size: 1.25rem;
   }
 
   .card-text {
     color: #b9b9b9;
+    line-height: 1.6;
+  }
+
+  .title-futuristic {
+    position: relative;
+    display: inline-block;
+  }
+
+  .title-futuristic::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -6px;
+    width: 50%;
+    height: 4px;
+    background: linear-gradient(90deg, #0ff, #2CA3A3);
+    border-radius: 2px;
+    transform: skewX(-20deg);
+    transition: width 0.3s ease;
+  }
+
+  .title-futuristic:hover::after {
+    width: 70%;
   }
 
   @media (max-width: 768px) {
@@ -91,8 +110,16 @@ const { name, subtitle } = Astro.props;
       @apply items-center text-center;
     }
 
-    .flex-1 {
-      width: 100%;
+    .grid {
+      grid-template-columns: 1fr !important;
+    }
+
+    .card-title {
+      font-size: 1.2rem;
+    }
+
+    .card-text {
+      font-size: 0.95rem;
     }
   }
 </style>
