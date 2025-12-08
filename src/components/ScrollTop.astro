@@ -17,26 +17,33 @@
   </svg>
 </button>
 
-<script type="module" client:load>
-  const btn = document.getElementById('scroll-top-btn');
-  if (!btn) return;
+<script type="module">
+  // Esperamos a que el DOM esté cargado
+  document.addEventListener('DOMContentLoaded', () => {
+    const btn = document.getElementById('scroll-top-btn');
+    if (!btn) return;
 
-  const SHOW_AFTER = 300;
+    const SHOW_AFTER = 300;
 
-  const updateVisibility = () => {
-    if (window.scrollY > SHOW_AFTER) {
-      btn.classList.remove('opacity-0', 'pointer-events-none', 'translate-y-5');
-      btn.classList.add('opacity-100', 'pointer-events-auto', 'translate-y-0');
-    } else {
-      btn.classList.add('opacity-0', 'pointer-events-none', 'translate-y-5');
-      btn.classList.remove('opacity-100', 'pointer-events-auto', 'translate-y-0');
-    }
-  };
+    const updateVisibility = () => {
+      if (window.scrollY > SHOW_AFTER) {
+        btn.classList.remove('opacity-0', 'pointer-events-none', 'translate-y-5');
+        btn.classList.add('opacity-100', 'pointer-events-auto', 'translate-y-0');
+      } else {
+        btn.classList.add('opacity-0', 'pointer-events-none', 'translate-y-5');
+        btn.classList.remove('opacity-100', 'pointer-events-auto', 'translate-y-0');
+      }
+    };
 
-  updateVisibility();
-  window.addEventListener('scroll', updateVisibility, { passive: true });
+    // Mostrar/ocultar al cargar
+    updateVisibility();
 
-  btn.addEventListener('click', () => {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    // Escuchar scroll
+    window.addEventListener('scroll', updateVisibility, { passive: true });
+
+    // Scroll al top
+    btn.addEventListener('click', () => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
   });
 </script>
