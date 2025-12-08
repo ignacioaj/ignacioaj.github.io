@@ -1,0 +1,20 @@
+[
+  {
+    "dates": " Vodafone Intelligent Solutions | Jan 2025- Present",
+    "company": "Junior Software Specialist",
+    "description": " I develop full-stack solutions with Angular and Java (Spring) for a German client, collaborate in international and Agile teams, create reusable Storybook components, implemente automated tests with Cypress, and use CI/CD pipelines in a Linux environment.",
+    "svgIcon": "<svg class='size-4 text-gray-600 dark:text-gray-400' fill='none' stroke='currentColor' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'> <path stroke-linecap='round' stroke-width='2' d='M8 8V6a2 2 0 012-2h4a2 2 0 012 2v2' /> <path stroke-linecap='round' stroke-width='2' d='M4 14l3.15.787a20 20 0 009.7 0L20 14' /> <path stroke-linejoin='round' stroke-width='2' d='M4 10a2 2 0 012-2h12a2 2 0 012 2v8a2 2 0 01-2 2H6a2 2 0 01-2-2v-8z' /><circle cx='12' cy='12' r='1' /></svg>"
+  },
+  {
+    "dates": " Complutense University of Madrid | Feb 2025- Feb 2026",
+    "company": "Master in Big Data, Data Science, and AI",
+    "description": " I built ML and Deep Learning models in Python (Scikit-learn, TensorFlow/Keras), applied NLP with Hugging Face and BERT, created Tableau dashboards, and deployed solutions using APIs and cloud platforms like AWS, Azure, and Google Colab.",
+    "svgIcon": "<svg class=\"size-4 text-gray-600 dark:text-gray-400\" fill=\"currentColor\" viewBox=\"0 0 16 16\" xmlns=\"http://www.w3.org/2000/svg\">\n  <path d=\"M8.211 2.047a.5.5 0 0 0-.422 0l-7.5 3.5a.5.5 0 0 0 .025.917l7.5 3a.5.5 0 0 0 .372 0L14 7.14V13a1 1 0 0 0-1 1v2h3v-2a1 1 0 0 0-1-1V6.739l.686-.275a.5.5 0 0 0 .025-.917zM8 8.46 1.758 5.965 8 3.052l6.242 2.913z\"/>\n  <path d=\"M4.176 9.032a.5.5 0 0 0-.656.327l-.5 1.7a.5.5 0 0 0 .294.605l4.5 1.8a.5.5 0 0 0 .372 0l4.5-1.8a.5.5 0 0 0 .294-.605l-.5-1.7a.5.5 0 0 0-.656-.327L8 10.466zm-.068 1.873.22-.748 3.496 1.311a.5.5 0 0 0 .352 0l3.496-1.311.22.748L8 12.46z\"/>\n</svg>\n"
+  },
+  {
+    "dates": " University of Málaga | Sept 2018 - Jul 2024",
+    "company": "Bsc. Biomedical Engineering",
+    "description": "I applied Python for data manipulation and Machine Learning, implemented Data Structures and Algorithms in Java (OOP), modeled and queried SQL databases, and performed statistical analysis in R to solve problems in human anatomy and physiology.",
+    "svgIcon": "<svg class=\"size-4 text-gray-600 dark:text-gray-400\" fill=\"currentColor\" viewBox=\"0 0 16 16\" xmlns=\"http://www.w3.org/2000/svg\">\n  <path d=\"M8.211 2.047a.5.5 0 0 0-.422 0l-7.5 3.5a.5.5 0 0 0 .025.917l7.5 3a.5.5 0 0 0 .372 0L14 7.14V13a1 1 0 0 0-1 1v2h3v-2a1 1 0 0 0-1-1V6.739l.686-.275a.5.5 0 0 0 .025-.917zM8 8.46 1.758 5.965 8 3.052l6.242 2.913z\"/>\n  <path d=\"M4.176 9.032a.5.5 0 0 0-.656.327l-.5 1.7a.5.5 0 0 0 .294.605l4.5 1.8a.5.5 0 0 0 .372 0l4.5-1.8a.5.5 0 0 0 .294-.605l-.5-1.7a.5.5 0 0 0-.656-.327L8 10.466zm-.068 1.873.22-.748 3.496 1.311a.5.5 0 0 0 .352 0l3.496-1.311.22.748L8 12.46z\"/>\n</svg>\n"
+  }
+]

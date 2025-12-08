@@ -1,0 +1,15 @@
+---
+interface Props {
+  className?: string;
+}
+
+const { className = "" } = Astro.props;
+const splitClasses = className.split(" ");
+---
+
+<div
+  class="rounded-md p-6 w-full border border-[#8799ae] flex flex-col gap-2 bg-gray-900/50 shadow-sm backdrop-blur-sm"
+  class:list={splitClasses}
+>
+  <slot />
+</div>

@@ -1,0 +1,124 @@
+---
+// src/components/Contact.astro
+import Card from './Card.astro';
+---
+
+<section
+  id="contact"
+  class="relative w-full min-h-[80vh] flex items-center justify-center bg-center bg-cover"
+  style="
+    background-image:
+      linear-gradient(to bottom, rgba(0,0,0,0.7), rgba(0,0,0,0)),
+      linear-gradient(to top, rgba(0,0,0,0.7), rgba(0,0,0,0)),
+      linear-gradient(to bottom, black 0%, black 20px),
+      url('/fondo-about.jpg');
+    background-size: cover, cover, 100% 20px, cover;
+    background-position: center, center, bottom, center;
+    background-repeat: no-repeat, no-repeat, no-repeat, no-repeat;
+  "
+>
+  <div class="section-content flex flex-col items-center text-center px-4 py-16 md:py-24 max-w-4xl w-full">
+
+    <!-- Título -->
+    <h2 class="text-3xl md:text-5xl font-bold text-white mb-6 title-futuristic">
+      Contact
+    </h2>
+
+    <!-- Mensaje cercano -->
+    <p class="font-roboto text-[#b9b9b9] mb-12 text-base md:text-lg max-w-xl">
+      If you want to get in touch, you can send me a message using the form below. I’d love to hear from you! 🩵
+    </p>
+
+    <!-- Contenedor del formulario centrado y responsive -->
+    <div class="w-full max-w-md">
+      <Card class="w-full p-6 md:p-8 shadow-lg">
+        <form
+          action="https://formspree.io/f/movgndvz"
+          method="POST"
+          onsubmit="handleSubmit(event)"
+          class="flex flex-col gap-4"
+        >
+          <div id="form-messages" class="mb-2 font-roboto text-center"></div>
+
+          <!-- Inputs full width -->
+          <label class="block text-left text-[#b9b9b9] font-roboto w-full">
+            Name
+            <input type="text" name="name" required class="w-full p-3 border rounded text-black font-roboto focus:outline-none focus:ring-2 focus:ring-[#2CA3A3]" />
+          </label>
+
+          <label class="block text-left text-[#b9b9b9] font-roboto w-full">
+            Email
+            <input type="email" name="email" required class="w-full p-3 border rounded text-black font-roboto focus:outline-none focus:ring-2 focus:ring-[#2CA3A3]" />
+          </label>
+
+          <label class="block text-left text-[#b9b9b9] font-roboto w-full">
+            Message
+            <textarea name="message" required class="w-full p-3 border rounded text-black font-roboto h-36 resize-none focus:outline-none focus:ring-2 focus:ring-[#2CA3A3]"></textarea>
+          </label>
+
+          <!-- Botón centrado -->
+          <button
+            type="submit"
+            class="w-full md:w-1/2 px-4 py-3 text-white rounded mx-auto transition hover:bg-[#239292]"
+            style="background-color: #2CA3A3;"
+          >
+            Send
+          </button>
+        </form>
+      </Card>
+    </div>
+
+  </div>
+
+  <script>
+    function handleSubmit(event) {
+      const form = event.target;
+      const formMessages = document.getElementById('form-messages');
+
+      event.preventDefault();
+
+      fetch(form.action, {
+        method: form.method,
+        body: new FormData(form),
+        headers: { 'Accept': 'application/json' }
+      })
+      .then(response => {
+        if (response.ok) {
+          formMessages.innerHTML = '<p class="text-green-600 font-bold font-roboto">Message sent successfully!</p>';
+          form.reset();
+        } else {
+          response.json().then(() => {
+            formMessages.innerHTML = '<p class="text-red-600 font-roboto">Error sending message.</p>';
+          });
+        }
+      })
+      .catch(() => {
+        formMessages.innerHTML = '<p class="text-red-600 font-roboto">Error sending message.</p>';
+      });
+    }
+  </script>
+</section>
+
+<style>
+.title-futuristic {
+  position: relative;
+  display: inline-block;
+}
+
+.title-futuristic::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -6px;
+  width: 50%; /* subrayado parcial */
+  height: 4px;
+  background: linear-gradient(90deg, #0ff, #2CA3A3);
+  border-radius: 2px;
+  transform: skewX(-20deg);
+  transition: width 0.3s ease;
+}
+
+.title-futuristic:hover::after {
+  width: 70%; /* crece al hover */
+}
+</style>

@@ -1,0 +1,42 @@
+---
+import Footer from "../components/Footer.astro";
+import Navbar from "../components/Navbar.astro";
+import ScrollTop from "../components/ScrollTop.astro";
+import "../styles/global.css";
+---
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/webp" href="/logo.webp" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{Astro.props.title}</title>
+    <meta name="description" content="A minimalist web developer portfolio built with Astro and TailwindCSS" />
+  </head>
+
+  <body class="bg-[#000000] text-white">
+
+    <!-- Todas las secciones fullwidth se renderizan aquí -->
+    <slot />
+
+    <Footer />
+
+    <!-- Componente que gestiona el scroll to top -->
+    <ScrollTop />
+
+    <style is:global>
+      html, body {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      *, *::before, *::after {
+        box-sizing: inherit;
+      }
+      * {
+        scroll-behavior: smooth;
+      }
+    </style>
+  </body>
+</html>

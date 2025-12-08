@@ -1,0 +1,125 @@
+---
+import Card from "../components/Card.astro";
+import EXPERIENCES from "../assets/collections/experiences.json";
+const { name, subtitle } = Astro.props;
+---
+
+<section
+  id="interests"
+  class="relative w-full min-h-[70vh] flex flex-col justify-center bg-center bg-cover"
+  style="
+    background-image:
+      linear-gradient(to bottom, rgba(0,0,0,0.7), rgba(0,0,0,0)),
+      linear-gradient(to top, rgba(0,0,0,0.7), rgba(0,0,0,0)),
+      linear-gradient(to bottom, black 0%, black 20px),
+      url('/fondo-interests.jpg');
+    background-size: cover, cover, 100% 20px, cover;
+    background-position: center, center, bottom, center;
+    background-repeat: no-repeat, no-repeat, no-repeat, no-repeat;
+  "
+>
+  <div class="section-content flex flex-col items-center text-center px-4 py-16 md:py-24 max-w-6xl w-full">
+
+    <!-- Título -->
+    <h2 class="text-3xl md:text-5xl font-bold text-white mb-12 title-futuristic">
+      Other Interests
+    </h2>
+
+    <article class="grid gap-8 md:grid-cols-3 w-full">
+
+      <!-- Healthy Lifestyle & Science -->
+      <Card className="text-gray-600 dark:text-gray-400 flex flex-col transform transition-transform duration-300 hover:scale-105">
+        <img src="src/assets/healthy.jpg" alt="Healthy Lifestyle" class="w-full h-48 object-cover rounded-md mb-4 transition-transform duration-300 hover:scale-110" />
+        <h3 class="card-title mb-2">Healthy Lifestyle & Science</h3>
+        <p class="card-text mb-2">
+          I love maintaining a healthy and active lifestyle. Running is one of my favorite ways to challenge myself and push my limits.
+        </p>
+        <p class="card-text">
+          I am fascinated by science and passionate about continuous learning. Teaching and guiding people allows me to communicate complex ideas clearly, combining curiosity with inspiration.
+        </p>
+      </Card>
+
+      <!-- Cooking & Gardening -->
+      <Card className="text-gray-600 dark:text-gray-400 flex flex-col transform transition-transform duration-300 hover:scale-105">
+        <img src="src/assets/cuisine.jpg" alt="Cooking & Gardening" class="w-full h-48 object-cover rounded-md mb-4 transition-transform duration-300 hover:scale-110" />
+        <h3 class="card-title mb-2">Cooking & Gardening</h3>
+        <p class="card-text mb-2">
+          Cooking is a way to explore cultures and create memories. Improvising dishes helps me connect with my experiences.
+        </p>
+        <p class="card-text">
+          Gardening aromatic herbs recently has complemented my cooking, bringing freshness and personal touch to my meals.
+        </p>
+      </Card>
+
+      <!-- Video Games & Creativity -->
+      <Card className="text-gray-600 dark:text-gray-400 flex flex-col transform transition-transform duration-300 hover:scale-105">
+        <img src="src/assets/rpg.png" alt="RPG Game" class="w-full h-48 object-cover rounded-md mb-4 transition-transform duration-300 hover:scale-110" />
+        <h3 class="card-title mb-2">Video Games & Creativity</h3>
+        <p class="card-text mb-2">
+          Video games allow me to unleash creativity. In Minecraft, I build cities and transportation networks, expanding my virtual world.
+        </p>
+        <p class="card-text">
+          Developing a Viking-inspired RPG lets me design a universe, create characters, improve drawing, pixel art, map-making, and storytelling skills.
+        </p>
+      </Card>
+
+    </article>
+  </div>
+</section>
+
+<style>
+  .section-content {
+    @apply w-full mx-auto px-6 md:px-10 lg:px-16;
+  }
+
+  .card-title {
+    color: #40E0D0;
+    font-weight: 600;
+    font-size: 1.25rem;
+  }
+
+  .card-text {
+    color: #b9b9b9;
+    line-height: 1.6;
+  }
+
+  .title-futuristic {
+    position: relative;
+    display: inline-block;
+  }
+
+  .title-futuristic::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -6px;
+    width: 50%;
+    height: 4px;
+    background: linear-gradient(90deg, #0ff, #2CA3A3);
+    border-radius: 2px;
+    transform: skewX(-20deg);
+    transition: width 0.3s ease;
+  }
+
+  .title-futuristic:hover::after {
+    width: 70%;
+  }
+
+  @media (max-width: 768px) {
+    .section-content {
+      @apply items-center text-center;
+    }
+
+    .grid {
+      grid-template-columns: 1fr !important;
+    }
+
+    .card-title {
+      font-size: 1.2rem;
+    }
+
+    .card-text {
+      font-size: 0.95rem;
+    }
+  }
+</style>

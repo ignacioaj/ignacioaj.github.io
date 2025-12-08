@@ -1,0 +1,122 @@
+---
+import { Image } from "astro:assets";
+
+const { pathname } = Astro.url;
+
+let links: string[];
+const linkNames = ["Home", "About", "Projects", "Services"];
+
+if (pathname == "/") {
+  links = ["#home", "#about", "#projects", "#services"];
+} else {
+  links = ["/", "/#about", "/projects", "/#services"];
+}
+---
+
+<header
+  <header
+    class="backdrop-blur-sm bg-white/20 dark:bg-gray-950/20 fixed top-0 left-0 w-full z-50 flex flex-wrap justify-between items-center py-2 px-4 sm:px-6 backdrop-blur-sm bg-white/20 dark:bg-gray-950/20 border-b border-gray-300 dark:border-neutral-800"
+  >
+  <a href="/">
+    <Image
+      src="/logo.webp"
+      class="size-16 object-contain object-center bg-transparent"
+      alt="Logo"
+      width={64}
+      height={64}
+      title="Logo"
+      aria-label="Logo"
+      loading="eager"
+    />
+  </a>
+  <div class="sm:order-2 flex items-center gap-3 text-gray-900">
+    <button
+      title="Theme Toggle"
+      aria-label="Theme Toggle"
+      id="theme-toggle"
+      class="flex items-center gap-2 dark:text-white"
+    >
+    </button>
+    <button
+      title="Navbar Toggle"
+      aria-label="Navbar Toggle"
+      id="navbar-toggle"
+      class="sm:hidden dark:text-white"
+    >
+      <svg
+        aria-label="Menu Icon"
+        id="navbar-menu-icon"
+        class="size-5"
+        fill="currentColor"
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 448 512"
+      >
+        <path
+          d="M0 96C0 78.3 14.3 64 32 64l384 0c17.7 0 32 14.3 32 32s-14.3 32-32 32L32 128C14.3 128 0 113.7 0 96zM0 256c0-17.7 14.3-32 32-32l384 0c17.7 0 32 14.3 32 32s-14.3 32-32 32L32 288c-17.7 0-32-14.3-32-32zM448 416c0 17.7-14.3 32-32 32L32 448c-17.7 0-32-14.3-32-32s14.3-32 32-32l384 0c17.7 0 32 14.3 32 32z"
+        ></path></svg
+      >
+      <svg
+        aria-label="Close Menu Icon"
+        id="navbar-x-icon"
+        class="hidden size-6"
+        fill="currentColor"
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 384 512"
+      >
+        <path
+          d="M342.6 150.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L192 210.7 86.6 105.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L146.7 256 41.4 361.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192 301.3 297.4 406.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L237.3 256 342.6 150.6z"
+        ></path></svg
+      >
+    </button>
+  </div>
+  <nav
+    id="navbar"
+    class="hidden -translate-y-[200%] transition-transform p-4 sm:block sm:translate-y-0 sm:static sm:p-0 w-full sm:w-auto text-sm lg:text-base"
+  >
+    <ul
+      class="flex flex-col items-center gap-4 lg:gap-6 border border-dashed border-gray-500 rounded-md font-semibold text-gray-500 p-4 sm:p-2 sm:border-none sm:bg-transparent sm:flex-row"
+    >
+      {
+        links.map((link, i) => (
+          <li>
+            <a
+              href={link}
+              class="hover:text-gray-950 dark:hover:text-white dark:text-gray-400"
+            >
+              {linkNames[i]}
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+  </nav>
+</header>
+<script is:inline>
+  const navbar = document.getElementById("navbar");
+  const navbarToggle = document.getElementById("navbar-toggle");
+  const navbarXIcon = document.getElementById("navbar-x-icon");
+  const navbarMenuIcon = document.getElementById("navbar-menu-icon");
+
+  if (navbarToggle instanceof HTMLButtonElement) {
+    navbarToggle.addEventListener("click", () => {
+      navbarXIcon.classList.toggle("hidden");
+      navbarMenuIcon.classList.toggle("hidden");
+
+      navbar.classList.toggle("hidden");
+
+      setTimeout(() => {
+        navbar.classList.toggle("-translate-y-[200%]");
+      });
+    });
+  }
+
+  const themeToggle = document.getElementById("theme-toggle");
+  const themeMoonIcon = document.getElementById("theme-moon-icon");
+  const themeSunIcon = document.getElementById("theme-sun-icon");
+
+
+
+
+
+
+</script>
