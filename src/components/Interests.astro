@@ -75,4 +75,26 @@ const { name, subtitle } = Astro.props;
   .card-text {
     color: #b9b9b9;
   }
+
+  .title-futuristic {
+      position: relative;
+      display: inline-block;
+    }
+
+    .title-futuristic::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      bottom: -6px;
+      width: 50%;
+      height: 4px;
+      background: linear-gradient(90deg, #0ff, #2CA3A3);
+      border-radius: 2px;
+      transform: skewX(-20deg);
+      transition: width 0.3s ease;
+    }
+
+    .title-futuristic:hover::after {
+      width: 70%;
+    }
 </style>
