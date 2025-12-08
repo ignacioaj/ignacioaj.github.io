@@ -1,94 +1,42 @@
 ---
-/*
-  ScrollTop.astro
-  - Hidratación en cliente con client:idle
-  - Botón visible después de 300px de scroll
-  - Smooth scroll al top al hacer click
-  - Icono SVG turquesa
-  - Accesible con aria-label y title
-*/
+// ScrollTop.astro
 ---
-<button id="scroll-top-btn" aria-label="Subir al inicio" title="Subir al inicio">
-  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="#2CA3A3" viewBox="0 0 24 24">
-    <path d="M12 4l-8 8h6v8h4v-8h6z"/>
+<button
+  id="scroll-top-btn"
+  aria-label="Subir al inicio"
+  title="Subir al inicio"
+  class="fixed right-5 bottom-5 w-12 h-12 md:w-14 md:h-14 rounded-full bg-white/5 backdrop-blur-md flex items-center justify-center shadow-lg opacity-0 pointer-events-none transform translate-y-5 transition-all duration-200 z-50 hover:shadow-xl"
+>
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    class="w-6 h-6 md:w-7 md:h-7 text-teal-400 transition-transform duration-200"
+    fill="currentColor"
+    viewBox="0 0 24 24"
+  >
+    <path d="M12 4l-8 8h6v8h4v-8h6z" />
   </svg>
 </button>
 
-<script type="module" client:idle>
+<script type="module" client:load>
   const btn = document.getElementById('scroll-top-btn');
-
-  if (!btn) throw new Error('ScrollTop: botón no encontrado');
-
-  // estilos iniciales
-  btn.style.opacity = '0';
-  btn.style.pointerEvents = 'none';
-  btn.style.transform = 'translateY(20px)';
+  if (!btn) return;
 
   const SHOW_AFTER = 300;
 
   const updateVisibility = () => {
     if (window.scrollY > SHOW_AFTER) {
-      btn.style.opacity = '1';
-      btn.style.pointerEvents = 'auto';
-      btn.style.transform = 'translateY(0)';
+      btn.classList.remove('opacity-0', 'pointer-events-none', 'translate-y-5');
+      btn.classList.add('opacity-100', 'pointer-events-auto', 'translate-y-0');
     } else {
-      btn.style.opacity = '0';
-      btn.style.pointerEvents = 'none';
-      btn.style.transform = 'translateY(20px)';
+      btn.classList.add('opacity-0', 'pointer-events-none', 'translate-y-5');
+      btn.classList.remove('opacity-100', 'pointer-events-auto', 'translate-y-0');
     }
   };
 
   updateVisibility();
   window.addEventListener('scroll', updateVisibility, { passive: true });
 
-  btn.addEventListener('click', (e) => {
-    e.preventDefault();
+  btn.addEventListener('click', () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   });
 </script>
-
-<style>
-  #scroll-top-btn {
-    position: fixed;
-    right: 20px;
-    bottom: 20px;
-    width: 48px;
-    height: 48px;
-    border-radius: 9999px;
-    border: none;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    background: rgba(255, 255, 255, 0.06);
-    cursor: pointer;
-    z-index: 9999;
-    box-shadow: 0 6px 18px rgba(0,0,0,0.6);
-    transition: opacity 220ms ease, transform 220ms ease, box-shadow 220ms ease;
-    opacity: 0;
-    pointer-events: none;
-    transform: translateY(20px);
-    backdrop-filter: blur(6px);
-  }
-
-  #scroll-top-btn svg {
-    transition: transform 220ms ease, fill 220ms ease;
-    display: block;
-  }
-
-  #scroll-top-btn:hover svg {
-    transform: translateY(-3px);
-    fill: #2CA3A3; /* turquesa hover */
-  }
-
-  @media (hover: none) {
-    #scroll-top-btn {
-      width: 56px;
-      height: 56px;
-    }
-
-    #scroll-top-btn svg {
-      width: 28px;
-      height: 28px;
-    }
-  }
-</style>
