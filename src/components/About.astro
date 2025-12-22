@@ -20,17 +20,14 @@ const { name, subtitle } = Astro.props;
     background-repeat: no-repeat;
   "
 >
-  <!-- Glow radial central más pequeño -->
   <div class="absolute inset-0 pointer-events-none before-glow"></div>
 
   <div class="section-content flex flex-col items-center text-center px-4 py-16 md:py-24 max-w-5xl w-full">
 
-    <!-- Título principal -->
     <h2 class="text-3xl md:text-5xl font-bold text-white mb-8 md:mb-16 title-futuristic">
       About Me
     </h2>
 
-    <!-- Intro con perfil y tech stack -->
     <section class="intro flex flex-col md:flex-row justify-center items-center gap-10 mb-16 relative z-10">
       <img
         src={profilePicture.src}
@@ -51,7 +48,6 @@ const { name, subtitle } = Astro.props;
           {subtitle}
         </p>
 
-        <!-- Tech stack futurista -->
         <div class="tech-stack flex flex-wrap gap-4 mt-6 justify-start">
           {[
             { src: "https://www.svgrepo.com/show/452091/python.svg", title: "Python" },
@@ -70,12 +66,11 @@ const { name, subtitle } = Astro.props;
       </div>
     </section>
 
-    <!-- Cards / Timeline -->
     <article class="flex flex-col md:flex-row gap-6 w-full max-w-screen-lg z-10">
 
       <Card className="text-gray-600 dark:text-gray-400 h-fit flex-1">
         <div class="flex flex-col gap-2 text-sm sm:text-base">
-          <h3 class="card-title">
+          <h3 class="card-title text-center">
             Short Bio
           </h3>
 
@@ -103,16 +98,18 @@ const { name, subtitle } = Astro.props;
         <br /><br />
 
         <div class="flex flex-col gap-2 mt-4">
-          <h3 class="card-title">Want to know a bit more?</h3>
-          <a
-            href="/docs/cv.pdf"
-            role="button"
-            aria-label="Download CV"
-            download
-            class="btn-turquoise w-fit"
-          >
-            Download CV
-          </a>
+          <h3 class="card-title text-center">Want to know a bit more?</h3>
+          <div class="flex justify-center mt-2">
+            <a
+              href="/docs/cv.pdf"
+              role="button"
+              aria-label="Download CV"
+              download
+              class="btn-turquoise"
+            >
+              Download CV
+            </a>
+          </div>
         </div>
       </Card>
 
@@ -162,22 +159,11 @@ const { name, subtitle } = Astro.props;
     box-shadow: 0 0 20px rgba(64, 224, 208, 0.8), 0 0 40px rgba(255, 105, 180, 0.4);
   }
 
-  .text {
-    flex: 1;
-  }
+  .text { flex: 1; }
 
-  .subtitle {
-    font-size: 1rem;
-    color: var(--ctp-subtext0);
-    opacity: 0.8;
-  }
+  .subtitle { font-size: 1rem; color: var(--ctp-subtext0); opacity: 0.8; }
 
-  .tech-stack {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 1rem;
-    margin-top: 1rem;
-  }
+  .tech-stack { display: flex; flex-wrap: wrap; gap: 1rem; margin-top: 1rem; }
 
   .tech-icon-wrapper {
     width: 60px;
@@ -207,18 +193,11 @@ const { name, subtitle } = Astro.props;
   }
 
   .tech-icon[src*="tensorflow"],
-  .tech-icon[src*="tableau"] {
-    filter: invert(1) hue-rotate(180deg);
-  }
+  .tech-icon[src*="tableau"] { filter: invert(1) hue-rotate(180deg); }
 
-  .card-title {
-    color: #40E0D0;
-    font-weight: 600;
-  }
+  .card-title { color: #40E0D0; font-weight: 600; }
 
-  .card-text {
-    color: #b9b9b9;
-  }
+  .card-text { color: #b9b9b9; }
 
   .btn-turquoise {
     display: inline-block;
@@ -230,9 +209,7 @@ const { name, subtitle } = Astro.props;
     transition: all 0.3s ease;
   }
 
-  .btn-turquoise:hover {
-    background-color: #33cfcf;
-  }
+  .btn-turquoise:hover { background-color: #33cfcf; }
 
   .signature {
     font-family: 'Allura', cursive;
@@ -244,10 +221,7 @@ const { name, subtitle } = Astro.props;
     opacity: 0.9;
   }
 
-  .title-futuristic {
-    position: relative;
-    display: inline-block;
-  }
+  .title-futuristic { position: relative; display: inline-block; }
 
   .title-futuristic::after {
     content: '';
@@ -262,9 +236,7 @@ const { name, subtitle } = Astro.props;
     transition: width 0.3s ease;
   }
 
-  .title-futuristic:hover::after {
-    width: 70%;
-  }
+  .title-futuristic:hover::after { width: 70%; }
 
   .before-glow::before {
     content: '';
@@ -278,31 +250,11 @@ const { name, subtitle } = Astro.props;
   }
 
   @media (max-width: 768px) {
-    .section-content {
-      @apply items-center text-center;
-    }
-
-    .pfp-square {
-      width: 140px;
-      height: 140px;
-    }
-
-    h1 {
-      font-size: 1.5rem;
-    }
-
-    .tech-icon-wrapper {
-      width: 50px;
-      height: 50px;
-    }
-
-    .tech-icon {
-      width: 24px;
-      height: 24px;
-    }
-
-    .signature {
-      text-align: center;
-    }
+    .section-content { @apply items-center text-center; }
+    .pfp-square { width: 140px; height: 140px; }
+    h1 { font-size: 1.5rem; }
+    .tech-icon-wrapper { width: 50px; height: 50px; }
+    .tech-icon { width: 24px; height: 24px; }
+    .signature { text-align: center; }
   }
 </style>
