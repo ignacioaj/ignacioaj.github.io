@@ -1,13 +1,13 @@
 [
   {
     "name": "Dicentric Chromosome Detection",
-    "description": "YOLO- and CNN-based model to automate the counting of dicentric chromosomes in biological dosimetry, using manually labeled images and various preprocessing techniques.",
+    "description": "YOLO- and CNN-based automated dicentric chromosome detection system, leveraging manually labeled microscopy images and advanced preprocessing to improve efficiency and consistency in radiation dose assessment.",
     "urlImg": "/projects/dicentric.webp",
     "link": "https://github.com/ignacioaj/tfg-ignacioaj"
   },
   {
     "name": "Sleep Induction Analysis",
-    "description": "Analysis on brain activity changes during sleep induction using spectral features in mono- and multichannel EEG data.",
+    "description": "EEG-based analysis of brain activity during sleep induction, applying MATLAB signal processing and spectral feature extraction on mono- and multichannel data to identify neural patterns in the transition from wakefulness to early sleep stages.",
     "urlImg": "/projects/sleep.webp",
     "link": "https://github.com/ignacioaj/sleepinduction"
   }
