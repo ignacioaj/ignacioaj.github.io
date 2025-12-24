@@ -2,12 +2,12 @@
 import { Image } from "astro:assets";
 import PROJECTS from "../assets/collections/projects.json";
 ---
-<section id="projects" class="relative py-24 bg-gray-900 overflow-hidden">
+<section id="projects" class="relative pt-12 pb-24 bg-gray-900 overflow-hidden">
   <div class="absolute inset-0 bg-gradient-to-br from-[#0F3B3A] via-[#134B4A] to-[#1AA9A6] opacity-80"></div>
 
   <div class="relative z-10 max-w-7xl mx-auto px-6 md:px-10 lg:px-16">
     <div class="text-center mb-16">
-      <h2 class="text-4xl md:text-5xl font-bold tracking-tight text-white bg-clip-text text-transparent bg-gradient-to-r from-white via-white to-white drop-shadow-xl select-none transition-transform duration-500 hover:scale-105">
+      <h2 class="text-4xl md:text-5xl font-bold tracking-tight text-white bg-clip-text text-transparent drop-shadow-xl select-none transition-transform duration-500 hover:scale-105">
         Projects
       </h2>
       <div class="mx-auto mt-4 w-24 h-[3px] bg-gradient-to-r from-[#4FD1C5] via-[#81E6D9] to-[#4FD1C5] rounded-full animate-pulse"></div>
@@ -20,7 +20,9 @@ import PROJECTS from "../assets/collections/projects.json";
           <a
             href={link}
             target="_blank"
-            class="group relative flex flex-col overflow-hidden rounded-3xl bg-gray-800/80 border border-white/10 shadow-xl hover:shadow-2xl hover:scale-105 transition-transform duration-400"
+            class="group relative flex flex-col rounded-3xl bg-gray-800/80 border-2 border-[#4FD1C5]
+                   shadow-[0_0_15px_rgba(79,209,197,0.35)] hover:shadow-[0_0_25px_rgba(79,209,197,0.6)]
+                   hover:scale-105 transition-all duration-400"
           >
             <div class="w-full h-56 overflow-hidden rounded-t-3xl">
               <Image
