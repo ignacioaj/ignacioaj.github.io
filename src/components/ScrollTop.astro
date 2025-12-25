@@ -1,11 +1,13 @@
 ---
-// ScrollTop.astro
 ---
 <button
   id="scroll-top-btn"
   aria-label="Subir al inicio"
   title="Subir al inicio"
-  class="fixed right-5 bottom-5 w-12 h-12 md:w-14 md:h-14 rounded-full bg-white/5 backdrop-blur-md flex items-center justify-center shadow-lg opacity-0 pointer-events-none transform translate-y-5 transition-all duration-200 z-50 hover:shadow-xl"
+  class="fixed right-5 bottom-5 w-12 h-12 md:w-14 md:h-14 rounded-full
+         bg-white/5 backdrop-blur-md flex items-center justify-center
+         shadow-lg opacity-0 pointer-events-none transform translate-y-5
+         transition-all duration-200 z-50 hover:shadow-xl"
 >
   <svg
     xmlns="http://www.w3.org/2000/svg"
@@ -18,32 +20,34 @@
 </button>
 
 <script type="module">
-  // Esperamos a que el DOM esté cargado
   document.addEventListener('DOMContentLoaded', () => {
-    const btn = document.getElementById('scroll-top-btn');
-    if (!btn) return;
+    const btn = document.getElementById('scroll-top-btn')
+    if (!btn) return
 
-    const SHOW_AFTER = 300;
+    const SHOW_AFTER = 300
 
     const updateVisibility = () => {
       if (window.scrollY > SHOW_AFTER) {
-        btn.classList.remove('opacity-0', 'pointer-events-none', 'translate-y-5');
-        btn.classList.add('opacity-100', 'pointer-events-auto', 'translate-y-0');
+        btn.classList.remove('opacity-0', 'pointer-events-none', 'translate-y-5')
+        btn.classList.add('opacity-100', 'pointer-events-auto', 'translate-y-0')
       } else {
-        btn.classList.add('opacity-0', 'pointer-events-none', 'translate-y-5');
-        btn.classList.remove('opacity-100', 'pointer-events-auto', 'translate-y-0');
+        btn.classList.add('opacity-0', 'pointer-events-none', 'translate-y-5')
+        btn.classList.remove('opacity-100', 'pointer-events-auto', 'translate-y-0')
       }
-    };
+    }
 
-    // Mostrar/ocultar al cargar
-    updateVisibility();
+    updateVisibility()
+    window.addEventListener('scroll', updateVisibility, { passive: true })
 
-    // Escuchar scroll
-    window.addEventListener('scroll', updateVisibility, { passive: true });
-
-    // Scroll al top
     btn.addEventListener('click', () => {
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    });
-  });
+      window.scrollTo({ top: 0, behavior: 'smooth' })
+      if (window.location.hash) {
+        history.replaceState(
+          null,
+          '',
+          window.location.pathname + window.location.search
+        )
+      }
+    })
+  })
 </script>
