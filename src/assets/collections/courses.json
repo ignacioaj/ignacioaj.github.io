@@ -1,0 +1,14 @@
+[
+  {
+    "title": "R Course in Data Science",
+    "subtitle": "University of Málaga - 2021-07",
+    "pathImage": "https://www.r-project.org/logo/Rlogo.svg",
+    "pathFile": "/public/docs/r.pdf"
+  },
+  {
+    "title": "Fundamentals of Deep Learning for Computer Vision",
+    "subtitle": "NVIDIA - 2020-09",
+    "pathImage": "src/assets/certifications/nvidia.png",
+    "pathFile": "/public/docs/dl.pdf"
+  }
+]
