@@ -4,51 +4,87 @@ interface Props {
   date: string;
   description: string;
   badgeText?: string;
+  isAlwaysOpen?: boolean;
 }
 
-const { title, date, description, badgeText } = Astro.props;
+const {
+  title,
+  date,
+  description,
+  badgeText,
+  isAlwaysOpen = false
+} = Astro.props;
 ---
 
 <li class="mb-10 ms-8">
+  <!-- ICON -->
   <span
     class="absolute flex items-center justify-center size-6 bg-blue-300 rounded-full -start-3 ring-8 ring-blue-100 dark:ring-blue-950/60 dark:bg-blue-800"
   >
     <slot name="icon" />
   </span>
-  <h3
-    class="flex items-center mb-1 text-lg font-semibold text-gray-950 dark:text-white"
-  >
-    {title}
-    {
-      badgeText && (
-        <span class="bg-blue-100 text-blue-800 text-sm font-medium me-2 px-2.5 py-0.5 rounded-xs dark:bg-blue-900 dark:text-blue-300 ms-3">
+
+  <div class="flex flex-col">
+
+    <!-- TITLE -->
+    <h3 class="flex items-center mb-0 text-lg font-semibold text-[#40E0D0]">
+      {title}
+
+      {badgeText && (
+        <span class="bg-blue-100 text-blue-800 text-sm font-medium ms-3 px-2.5 py-0.5 rounded-xs dark:bg-blue-900 dark:text-blue-300">
           {badgeText}
         </span>
-      )
-    }
-  </h3>
-  <time class="block mb-2 text-sm font-normal leading-none text-gray-500"
-    >{date}</time
-  >
-  <p
-    class="mb-4 text-sm sm:text-base font-normal text-white"
-  >
-    {description}
-  </p>
-  <slot name="extra-content" />
+      )}
+    </h3>
+
+    <!-- DATE (muy pegado al title) -->
+    <time class="block mb-4 text-sm font-normal text-white">
+      {date}
+    </time>
+
+    <!-- ALWAYS OPEN -->
+    {isAlwaysOpen ? (
+      <div class="mb-4 p-4 rounded-md border border-white/10 bg-white/5">
+        <p class="text-sm font-normal text-white/80 leading-relaxed">
+          {description}
+        </p>
+      </div>
+    ) : (
+      /* COLLAPSIBLE */
+      <div class="mb-4">
+
+        <!-- BUTTON -->
+        <div class="inline-flex items-center px-3 py-1 border border-white/20 rounded-md bg-white/5">
+          <button
+            type="button"
+            class="text-xs font-normal text-white/70 hover:text-white transition"
+            data-toggle
+          >
+            Show more...
+          </button>
+        </div>
+
+        <!-- CONTENT -->
+        <div class="hidden mt-4 p-4 rounded-md border border-white/10 bg-white/5">
+          <p class="text-sm font-normal text-white/80 leading-relaxed">
+            {description}
+          </p>
+        </div>
+
+      </div>
+    )}
+
+  </div>
 </li>
 
-<style>
-  /* Cambiamos colores de los textos según tus especificaciones */
-  h3 {
-    color: #40E0D0; /* título en turquesa */
-  }
+<script is:inline>
+  document.addEventListener('click', (e) => {
+    const btn = e.target.closest('[data-toggle]');
+    if (!btn) return;
 
-  time {
-    color: #ffffff; /* blanco ligeramente gris */
-  }
+    const content = btn.closest('div').nextElementSibling;
+    const isHidden = content.classList.toggle('hidden');
 
-  p {
-    color: #b9b9b9; /* blanco ligeramente gris */
-  }
-</style>
+    btn.textContent = isHidden ? 'Show more...' : 'Hide';
+  });
+</script>

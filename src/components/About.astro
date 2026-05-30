@@ -116,11 +116,12 @@ const { name, subtitle } = Astro.props;
         <h3 class="card-title mb-4 text-center">My Experiences</h3>
 
         <ol class="relative border-s border-gray-300 dark:border-neutral-800">
-          {EXPERIENCES.map((experience) => (
+          {EXPERIENCES.map((experience, index) => (
             <TimelineItem
               title={experience.company}
               description={experience.description}
               date={experience.dates}
+              isAlwaysOpen={index === 0}
               class="text-left"
             >
               <div
