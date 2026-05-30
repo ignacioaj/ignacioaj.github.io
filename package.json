@@ -30,6 +30,7 @@
   },
   "dependencies": {
     "@astrojs/vercel": "^8.2.9",
-    "nodemailer": "^7.0.9"
+    "nodemailer": "^7.0.9",
+    "simple-icons": "^16.21.0"
   }
 }

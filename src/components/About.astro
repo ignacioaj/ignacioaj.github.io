@@ -16,7 +16,7 @@ const { subtitle } = Astro.props;
       linear-gradient(to bottom, black, rgba(0,0,0,0)),
       linear-gradient(to top, black, rgba(0,0,0,0)),
       url('/fondo-about.jpg');
-    background-size: cover, cover, cover;
+    background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
   "
@@ -26,54 +26,60 @@ const { subtitle } = Astro.props;
   <div class="section-content flex flex-col items-center text-center px-4 py-16 md:py-24 max-w-5xl w-full">
 
     <!-- TITLE -->
-    <h2 class="text-3xl md:text-5xl font-bold text-white mb-10 md:mb-20 title-futuristic">
+    <h2 class="text-3xl md:text-5xl font-bold text-white mb-20 title-futuristic">
       About Me
     </h2>
 
     <!-- INTRO -->
-    <section class="intro flex flex-col md:flex-row justify-center items-center gap-10 mb-16 relative z-10">
+    <section class="intro w-full flex justify-center items-center mb-16 relative z-10">
 
-      <img
-        src={profilePicture.src}
-        alt="Nacho profile picture"
-        class="pfp-square"
-      />
+      <div class="flex flex-col md:flex-row items-center md:items-start gap-10 md:gap-14 w-full max-w-4xl">
 
-      <div class="text flex-1 max-w-2xl text-left md:text-left">
+        <!-- PROFILE IMAGE -->
+        <img
+          src={profilePicture.src}
+          alt="Nacho profile picture"
+          class="pfp-square shrink-0"
+        />
 
-        <p class="subtitle-professional text-lg md:text-xl font-semibold mb-1">
-          Biomedical Engineer • Data Scientist • Developer
-        </p>
+        <!-- TEXT -->
+        <div class="flex flex-col text-center md:text-left max-w-2xl">
 
-        <h1 class="text-white text-3xl md:text-4xl font-bold mb-3">
-          Hi, I'm Ignacio
-        </h1>
+          <p class="subtitle-professional text-sm md:text-base mb-2">
+            Biomedical Engineer • Data Scientist • Web Developer
+          </p>
 
-        <p class="subtitle text-gray-300">
-          {subtitle}
-        </p>
+          <h1 class="text-white text-4xl md:text-5xl font-bold leading-tight mb-4">
+            Ignacio Atencia Jiménez
+          </h1>
 
-        <!-- STACK -->
-        <div class="tech-stack flex flex-wrap gap-4 mt-6 justify-start">
-          {[
-            { src: "https://cdn.simpleicons.org/python/40E0D0", title: "Python" },
-            { src: "https://cdn.simpleicons.org/r/40E0D0", title: "R" },
-            { src: "https://cdn.simpleicons.org/sqlite/40E0D0", title: "SQL" },
-            { src: "https://cdn.simpleicons.org/scikitlearn/40E0D0", title: "Scikit-learn" },
-            { src: "https://cdn.simpleicons.org/tensorflow/40E0D0", title: "TensorFlow / Keras" },
-            { src: "https://cdn.simpleicons.org/tableau/40E0D0", title: "Tableau" },
-            { src: "https://cdn.simpleicons.org/git/40E0D0", title: "Git" }
-          ].map(tech => (
-            <div class="tech-icon-wrapper" title={tech.title}>
-              <img src={tech.src} alt={tech.title} class="tech-icon" />
-            </div>
-          ))}
+          <p class="subtitle text-gray-300 text-base md:text-lg mb-6">
+            {subtitle}
+          </p>
+
+          <!-- TECH STACK -->
+          <div class="flex flex-wrap gap-3 justify-center md:justify-start">
+            {[
+              { src: "https://cdn.simpleicons.org/python/40E0D0", title: "Python" },
+              { src: "https://cdn.simpleicons.org/r/40E0D0", title: "R" },
+              { src: "https://cdn.simpleicons.org/mysql/40E0D0", title: "SQL" },
+              { src: "https://cdn.simpleicons.org/scikitlearn/40E0D0", title: "Scikit-learn" },
+              { src: "https://cdn.simpleicons.org/tensorflow/40E0D0", title: "TensorFlow / Keras" },
+              { src: "https://cdn.simpleicons.org/typescript/40E0D0", title: "TypeScript" },
+              { src: "https://cdn.simpleicons.org/git/40E0D0", title: "Git" }
+            ].map(tech => (
+              <div class="tech-icon-wrapper" title={tech.title}>
+                <img src={tech.src} alt={tech.title} class="tech-icon" />
+              </div>
+            ))}
+          </div>
+
         </div>
-
       </div>
+
     </section>
 
-    <!-- MAIN CARDS (GRID = EQUAL HEIGHT FIX) -->
+    <!-- MAIN CARDS -->
     <article class="grid grid-cols-1 md:grid-cols-2 gap-6 w-full max-w-screen-lg z-10 items-stretch">
 
       <!-- SHORT BIO -->
@@ -117,11 +123,7 @@ const { subtitle } = Astro.props;
           </h3>
 
           <div class="flex justify-center">
-            <a
-              href="/docs/CV-IGNACIO-ATENCIA.pdf"
-              download
-              class="btn-turquoise"
-            >
+            <a href="/docs/CV-IGNACIO-ATENCIA.pdf" download class="btn-turquoise">
               Download CV
             </a>
           </div>
@@ -169,7 +171,9 @@ const { subtitle } = Astro.props;
     height: 180px;
     border-radius: 16px;
     border: 3px solid #40e0d0;
-    box-shadow: 0 0 15px rgba(64, 224, 208, 0.6), 0 0 30px rgba(64, 224, 208, 0.3);
+    box-shadow:
+      0 0 15px rgba(64, 224, 208, 0.6),
+      0 0 30px rgba(64, 224, 208, 0.3);
     object-fit: cover;
   }
 
@@ -184,16 +188,9 @@ const { subtitle } = Astro.props;
     letter-spacing: 0.5px;
   }
 
-  .tech-stack {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 1rem;
-    margin-top: 1rem;
-  }
-
   .tech-icon-wrapper {
-    width: 60px;
-    height: 60px;
+    width: 58px;
+    height: 58px;
     border-radius: 14px;
     display: flex;
     align-items: center;
@@ -201,6 +198,12 @@ const { subtitle } = Astro.props;
     background: rgba(255, 255, 255, 0.03);
     border: 1px solid rgba(255, 255, 255, 0.08);
     backdrop-filter: blur(6px);
+    transition: transform 0.2s ease, border 0.2s ease;
+  }
+
+  .tech-icon-wrapper:hover {
+    transform: translateY(-2px);
+    border: 1px solid rgba(64, 224, 208, 0.4);
   }
 
   .tech-icon {
