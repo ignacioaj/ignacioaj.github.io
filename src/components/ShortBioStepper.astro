@@ -1,31 +1,12 @@
 ---
-const steps = [
-  {
-    question: "What am I passionate about?",
-    text:
-      "Hi! I am a Biomedical Engineer fascinated by the human body, from molecules to complex systems, and by how technology can help us understand and improve it."
-  },
-  {
-    question: "What do I enjoy doing?",
-    text:
-      "I enjoy solving problems with code, whether analyzing medical data, processing images, or exploring AI applications in healthcare."
-  },
-  {
-    question: "How has my education been?",
-    text:
-      "I graduated in Biomedical Engineering at the University of Málaga, combining strong academics with hands-on experiences that shaped my career path."
-  },
-  {
-    question: "What impacted me the most?",
-    text:
-      "During an Erasmus in Finland I worked with real EEG and ECG signals for pathology detection.\nIn my thesis I applied AI to detect radiation-induced chromosomal abnormalities in micrographs."
-  },
-  {
-    question: "What am I looking for now?",
-    text:
-      "I want to keep growing in medical technology, especially in medical data science, imaging, and AI-driven healthcare solutions."
-  }
-];
+import bio from "../assets/collections/bio.json";
+
+interface Step {
+  question: string;
+  text: string;
+}
+
+const steps = bio as Step[];
 ---
 
 <div class="bio-root">

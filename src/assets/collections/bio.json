@@ -1,0 +1,26 @@
+[
+  {
+    "question": "Hi, what drives me?",
+    "text": "Hi! I'm a Biomedical Engineer driven by a curiosity to understand how the human body works and how that knowledge can be translated into technology that genuinely improves healthcare."
+  },
+  {
+    "question": "What makes me different?",
+    "text": "I bridge biomedical engineering with AI, programming, and data analysis. This allows me to approach clinical challenges from a technical perspective."
+  },
+  {
+    "question": "How did my academic journey shape my career?",
+    "text": "I graduated in Biomedical Engineering at the University of Málaga in 2024, combining strong academics with hands-on experiences."
+  },
+  {
+    "question": "What experience has influenced me the most?",
+    "text": "During my Erasmus stay in Finland I had my first exposure to clinical datasets. There, I could work with real EEG and ECG data for pathology detection, which showed me the potential of this field."
+  },
+  {
+    "question": "Which project am I most proud of?",
+    "text": "In my Bachelor's thesis, I focused on detecting radiation-induced chromosomal abnormalities in microscopy images using AI. It was especially rewarding to see it result in a published scientific paper."
+  },
+  {
+    "question": "What am I looking for next?",
+    "text": "I’m now looking to grow further in the field of Medical AI and Healthcare technology, where I can keep developing my skills while contributing to projects that have a meaningful real-world impact."
+  }
+]
