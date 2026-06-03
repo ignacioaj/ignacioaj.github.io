@@ -33,7 +33,10 @@ import "../styles/global.css";
           lock() {
             this.scrollY = window.scrollY || window.pageYOffset;
 
-            document.documentElement.style.overflow = "clip";
+            const html = document.documentElement;
+
+            html.style.scrollbarGutter = "stable";
+            html.style.overflow = "hidden";
           },
 
           unlock() {
