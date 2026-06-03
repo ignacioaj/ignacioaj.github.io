@@ -15,17 +15,23 @@ const { id, title, date, description } = Astro.props;
   onclose="window.ScrollLock?.unlock?.()"
 >
 
-  <div class="p-6 relative">
+  <!-- HEADER BAR -->
+  <div class="flex items-center justify-between px-6 py-3 border-b border-white/10">
+    <h2 class="text-sm font-semibold text-[#40E0D0] tracking-wide">
+      My Experiences
+    </h2>
 
-    <!-- CLOSE -->
     <button
-      class="absolute top-3 right-3 text-white/60 hover:text-white"
+      class="text-white/60 hover:text-white text-lg leading-none"
       onclick={`document.getElementById('${id}').close()`}
     >
       ✕
     </button>
+  </div>
 
-    <!-- HEADER -->
+  <div class="p-6 relative">
+
+    <!-- HEADER CONTENT -->
     <div class="flex items-center gap-5 mb-4 pl-2">
 
       <span class="flex items-center justify-center size-6 bg-blue-300 rounded-full ring-8 ring-blue-100 dark:ring-blue-950/60 dark:bg-blue-800">
