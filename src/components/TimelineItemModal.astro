@@ -1,0 +1,54 @@
+---
+interface Props {
+  id: string;
+  title: string;
+  date: string;
+  description: string;
+}
+
+const { id, title, date, description } = Astro.props;
+---
+
+<dialog
+  id={id}
+  class="backdrop:bg-black/70 w-full max-w-lg rounded-lg p-0 text-white bg-[#061a1a] border border-white/10"
+  onclose="window.ScrollLock?.unlock?.()"
+>
+
+  <div class="p-6 relative">
+
+    <!-- CLOSE -->
+    <button
+      class="absolute top-3 right-3 text-white/60 hover:text-white"
+      onclick={`document.getElementById('${id}').close()`}
+    >
+      ✕
+    </button>
+
+    <!-- HEADER -->
+    <div class="flex items-center gap-5 mb-4 pl-2">
+
+      <span class="flex items-center justify-center size-6 bg-blue-300 rounded-full ring-8 ring-blue-100 dark:ring-blue-950/60 dark:bg-blue-800">
+        <slot name="icon" />
+      </span>
+
+      <div>
+        <h3 class="text-lg font-semibold text-[#40E0D0] leading-tight">
+          {title}
+        </h3>
+        <time class="text-sm text-white/70">
+          {date}
+        </time>
+      </div>
+
+    </div>
+
+    <!-- CONTENT -->
+    <div class="mb-4 p-4 rounded-md border border-white/10 bg-white/5">
+      <p class="text-sm text-white/80 leading-relaxed">
+        {description}
+      </p>
+    </div>
+
+  </div>
+</dialog>

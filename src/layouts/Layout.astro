@@ -4,6 +4,7 @@ import Navbar from "../components/Navbar.astro";
 import ScrollTop from "../components/ScrollTop.astro";
 import "../styles/global.css";
 ---
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -24,13 +25,36 @@ import "../styles/global.css";
 
     <ScrollTop />
 
+    <script is:inline>
+      if (!window.ScrollLock) {
+        window.ScrollLock = {
+          scrollY: 0,
+
+          lock() {
+            this.scrollY = window.scrollY || window.pageYOffset;
+
+            document.documentElement.style.overflow = "clip";
+          },
+
+          unlock() {
+            document.documentElement.style.overflow = "";
+
+            const y = this.scrollY;
+
+            requestAnimationFrame(() => {
+              window.scrollTo(0, y);
+            });
+          }
+        };
+      }
+    </script>
+
     <style is:global>
       html, body {
         margin: 0;
         padding: 0;
         box-sizing: border-box;
 
-        /* Evita rebote de scroll y scroll horizontal extra */
         overscroll-behavior: none;
         min-height: 100%;
       }
