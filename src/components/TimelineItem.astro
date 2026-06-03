@@ -16,16 +16,17 @@ const {
 } = Astro.props;
 ---
 
-<li class="mb-8 ms-8">
+<li class="mb-8 relative">
+
   <!-- ICON -->
   <span
-    class="absolute flex items-center justify-center size-6 bg-blue-300 rounded-full -start-3 ring-8 ring-blue-100 dark:ring-blue-950/60 dark:bg-blue-800"
+    class="absolute left-0 top-0 z-20 -translate-x-1/2 flex items-center justify-center size-6 bg-blue-300 rounded-full ring-8 ring-blue-100 dark:ring-blue-950/60 dark:bg-blue-800"
   >
     <slot name="icon" />
   </span>
 
-  <!-- CONTENT SHIFTED SLIGHTLY MORE UP -->
-  <div class="flex flex-col relative -top-3">
+  <!-- CONTENT (menos separación, más compacto) -->
+  <div class="ml-7 sm:ml-8 flex flex-col relative -top-3 z-0">
 
     <!-- TITLE -->
     <h3 class="flex items-center mb-0 text-lg font-semibold text-[#40E0D0]">
@@ -53,38 +54,27 @@ const {
     ) : (
       <div class="mb-4">
 
-        <!-- BUTTON -->
-        <div class="inline-flex items-center px-3 py-1 border border-white/20 rounded-md bg-white/5">
-          <button
-            type="button"
-            class="text-xs font-normal text-white/70 hover:text-white transition"
-            data-toggle
-          >
-            Show more...
-          </button>
-        </div>
+        <details class="group">
 
-        <!-- COLLAPSIBLE -->
-        <div class="hidden mt-2 p-4 rounded-md border border-white/10 bg-white/5">
-          <p class="text-sm font-normal text-white/80 leading-relaxed">
-            {description}
-          </p>
-        </div>
+          <summary class="inline-flex items-center px-3 py-1 border border-white/20 rounded-md bg-white/5 cursor-pointer list-none w-fit">
+            <span class="text-xs font-normal text-white/70 group-open:hidden">
+              Show more...
+            </span>
+            <span class="text-xs font-normal text-white hidden group-open:inline">
+              Hide
+            </span>
+          </summary>
+
+          <div class="mt-2 p-4 rounded-md border border-white/10 bg-white/5">
+            <p class="text-sm font-normal text-white/80 leading-relaxed">
+              {description}
+            </p>
+          </div>
+
+        </details>
 
       </div>
     )}
 
   </div>
 </li>
-
-<script is:inline>
-  document.addEventListener('click', (e) => {
-    const btn = e.target.closest('[data-toggle]');
-    if (!btn) return;
-
-    const content = btn.closest('div').nextElementSibling;
-    const isHidden = content.classList.toggle('hidden');
-
-    btn.textContent = isHidden ? 'Show more...' : 'Hide';
-  });
-</script>
