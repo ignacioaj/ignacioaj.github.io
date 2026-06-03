@@ -31,9 +31,7 @@ const { id, title, date, description } = Astro.props;
 
   <div class="p-6 relative">
 
-    <!-- HEADER CONTENT -->
     <div class="flex items-center gap-5 mb-4 pl-2">
-
       <span class="flex items-center justify-center size-6 bg-blue-300 rounded-full ring-8 ring-blue-100 dark:ring-blue-950/60 dark:bg-blue-800">
         <slot name="icon" />
       </span>
@@ -46,10 +44,8 @@ const { id, title, date, description } = Astro.props;
           {date}
         </time>
       </div>
-
     </div>
 
-    <!-- CONTENT -->
     <div class="mb-4 p-4 rounded-md border border-white/10 bg-white/5">
       <p class="text-sm text-white/80 leading-relaxed">
         {description}
@@ -60,14 +56,14 @@ const { id, title, date, description } = Astro.props;
 </dialog>
 
 <style>
+  /* 🌑 darker + more focus */
   dialog::backdrop {
-    background: rgba(0, 0, 0, 0.22);
+    background: rgba(0, 0, 0, 0.45);
     backdrop-filter: blur(2px);
   }
 
-  /* Soft entrance */
   dialog[open] {
-    animation: fadeIn 100ms ease-out;
+    animation: fadeIn 120ms ease-out;
   }
 
   @keyframes fadeIn {
