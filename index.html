@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"> <head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><link rel="icon" type="image/webp" href="/favicon.png"><meta name="generator" content="Astro v5.14.4"><title>Ignacio Atencia Jiménez</title><meta name="description" content="A minimalist web developer portfolio built with Astro and TailwindCSS"><link rel="stylesheet" href="/_astro/index.CcDDZHBJ.css"></head> <body class="bg-[#000000] text-white"> <!-- Todas las secciones fullwidth se renderizan aquí -->  <section class="relative w-full min-h-[70vh] flex items-center justify-center bg-center bg-cover" style="
+<!DOCTYPE html><html lang="en"> <head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><link rel="icon" type="image/webp" href="/favicon.png"><meta name="generator" content="Astro v5.14.4"><title>Ignacio Atencia Jiménez</title><meta name="description" content="A minimalist web developer portfolio built with Astro and TailwindCSS"><link rel="stylesheet" href="/_astro/index.C4anglxo.css"></head> <body class="bg-[#000000] text-white"> <!-- Todas las secciones fullwidth se renderizan aquí -->  <section class="relative w-full min-h-[70vh] flex items-center justify-center bg-center bg-cover" style="
     background-image:
       linear-gradient(to bottom, rgba(0,0,0,0.7), rgba(0,0,0,0)),
       linear-gradient(to top, rgba(0,0,0,0.7), rgba(0,0,0,0)),
@@ -82,7 +82,6 @@ My Bio
 
     btn.disabled = true;
 
-    // 1. animación de salida del botón
     btn.style.transition = "all 0.25s ease";
     btn.style.opacity = "0";
     btn.style.transform = "translateY(-6px)";
@@ -91,7 +90,6 @@ My Bio
     await new Promise(r => setTimeout(r, 250));
     btn.remove();
 
-    // 2. escribir texto después
     await typeWriter(textEl, DATA[i].text);
 
     current++;
@@ -99,19 +97,16 @@ My Bio
   }
 
   function init() {
-    // primer texto automático
     const firstText = document.createElement("div");
     firstText.className = "text";
     firstText.textContent = DATA[0].text;
 
     container.appendChild(firstText);
 
-    // primer botón
     createStep(1);
   }
 
   document.addEventListener("click", handleClick);
-
   init();
 })();</script>  </div>  </div> <!-- EXPERIENCE --> <div class="rounded-md p-6 w-full border border-[#8799ae] flex flex-col gap-2 bg-gray-900/50 shadow-sm backdrop-blur-sm p-8 flex flex-col text-left h-full">  <h3 class="card-title text-center text-xl md:text-2xl mb-6 md:mb-10" data-astro-cid-v2cbyr3p>
 My Experiences

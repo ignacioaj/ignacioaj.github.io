@@ -72,7 +72,6 @@ const steps = bio as Step[];
 
     btn.disabled = true;
 
-    // 1. animación de salida del botón
     btn.style.transition = "all 0.25s ease";
     btn.style.opacity = "0";
     btn.style.transform = "translateY(-6px)";
@@ -81,7 +80,6 @@ const steps = bio as Step[];
     await new Promise(r => setTimeout(r, 250));
     btn.remove();
 
-    // 2. escribir texto después
     await typeWriter(textEl, DATA[i].text);
 
     current++;
@@ -89,23 +87,22 @@ const steps = bio as Step[];
   }
 
   function init() {
-    // primer texto automático
     const firstText = document.createElement("div");
     firstText.className = "text";
     firstText.textContent = DATA[0].text;
 
     container.appendChild(firstText);
 
-    // primer botón
     createStep(1);
   }
 
   document.addEventListener("click", handleClick);
-
   init();
 </script>
 
 <style is:global>
+@import url('https://fonts.googleapis.com/css2?family=Allura&display=swap');
+
 .bio-root {
   color: #b9b9b9;
   display: flex;
@@ -113,21 +110,18 @@ const steps = bio as Step[];
   gap: 2rem;
 }
 
-/* contenedor de pasos */
 #steps {
   display: flex;
   flex-direction: column;
   gap: 2rem;
 }
 
-/* bloque */
 .step {
   display: flex;
   flex-direction: column;
   gap: 1rem;
 }
 
-/* texto */
 .text {
   line-height: 1.6;
   font-size: 1rem;
@@ -135,7 +129,6 @@ const steps = bio as Step[];
   white-space: pre-line;
 }
 
-/* botón */
 .question {
   all: unset;
 
