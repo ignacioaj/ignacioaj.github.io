@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"> <head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><link rel="icon" type="image/webp" href="/favicon.png"><meta name="generator" content="Astro v5.14.4"><title>Ignacio Atencia Jiménez</title><meta name="description" content="A minimalist web developer portfolio built with Astro and TailwindCSS"><link rel="stylesheet" href="/_astro/index.C4anglxo.css"></head> <body class="bg-[#000000] text-white"> <!-- Todas las secciones fullwidth se renderizan aquí -->  <section class="relative w-full min-h-[70vh] flex items-center justify-center bg-center bg-cover" style="
+<!DOCTYPE html><html lang="en"> <head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><link rel="icon" type="image/webp" href="/favicon.png"><meta name="generator" content="Astro v5.14.4"><title>Ignacio Atencia Jiménez</title><meta name="description" content="A minimalist web developer portfolio built with Astro and TailwindCSS"><link rel="stylesheet" href="/_astro/index.-5L9Nlqw.css"></head> <body class="bg-[#000000] text-white"> <!-- Todas las secciones fullwidth se renderizan aquí -->  <section class="relative w-full min-h-[70vh] flex items-center justify-center bg-center bg-cover" style="
     background-image:
       linear-gradient(to bottom, rgba(0,0,0,0.7), rgba(0,0,0,0)),
       linear-gradient(to top, rgba(0,0,0,0.7), rgba(0,0,0,0)),
@@ -41,10 +41,27 @@ My Bio
         if (i < text.length) {
           el.textContent += text[i++];
           setTimeout(tick, speed);
-        } else resolve();
+        } else {
+          resolve();
+        }
       };
       tick();
     });
+  }
+
+  function fitButtonText(btn) {
+    const originalSize = 16; // 1rem
+    const minSize = 11;
+
+    btn.style.fontSize = `${originalSize}px`;
+
+    while (
+      btn.scrollHeight > btn.clientHeight + 1 &&
+      parseFloat(btn.style.fontSize) > minSize
+    ) {
+      btn.style.fontSize =
+        `${parseFloat(btn.style.fontSize) - 0.25}px`;
+    }
   }
 
   function createStep(i) {
@@ -68,6 +85,8 @@ My Bio
     step.appendChild(btn);
     step.appendChild(text);
     container.appendChild(step);
+
+    requestAnimationFrame(() => fitButtonText(btn));
   }
 
   async function handleClick(e) {
@@ -105,6 +124,12 @@ My Bio
 
     createStep(1);
   }
+
+  window.addEventListener("resize", () => {
+    document
+      .querySelectorAll(".question")
+      .forEach(btn => fitButtonText(btn));
+  });
 
   document.addEventListener("click", handleClick);
   init();

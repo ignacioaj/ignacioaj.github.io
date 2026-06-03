@@ -31,10 +31,27 @@ const steps = bio as Step[];
         if (i < text.length) {
           el.textContent += text[i++];
           setTimeout(tick, speed);
-        } else resolve();
+        } else {
+          resolve();
+        }
       };
       tick();
     });
+  }
+
+  function fitButtonText(btn) {
+    const originalSize = 16; // 1rem
+    const minSize = 11;
+
+    btn.style.fontSize = `${originalSize}px`;
+
+    while (
+      btn.scrollHeight > btn.clientHeight + 1 &&
+      parseFloat(btn.style.fontSize) > minSize
+    ) {
+      btn.style.fontSize =
+        `${parseFloat(btn.style.fontSize) - 0.25}px`;
+    }
   }
 
   function createStep(i) {
@@ -58,6 +75,8 @@ const steps = bio as Step[];
     step.appendChild(btn);
     step.appendChild(text);
     container.appendChild(step);
+
+    requestAnimationFrame(() => fitButtonText(btn));
   }
 
   async function handleClick(e) {
@@ -96,6 +115,12 @@ const steps = bio as Step[];
     createStep(1);
   }
 
+  window.addEventListener("resize", () => {
+    document
+      .querySelectorAll(".question")
+      .forEach(btn => fitButtonText(btn));
+  });
+
   document.addEventListener("click", handleClick);
   init();
 </script>
@@ -133,6 +158,7 @@ const steps = bio as Step[];
   all: unset;
 
   display: block;
+  box-sizing: border-box;
   cursor: pointer;
 
   padding: 0.9rem 1.15rem;
@@ -145,8 +171,12 @@ const steps = bio as Step[];
 
   font-size: 1rem;
   font-weight: 600;
+  line-height: 1.2;
 
   max-width: 560px;
+
+  white-space: nowrap;
+  overflow: hidden;
 
   transition: all 0.25s ease;
 }
