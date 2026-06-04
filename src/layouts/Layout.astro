@@ -10,15 +10,22 @@ import "../styles/global.css";
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="icon" type="image/webp" href="/favicon.png" />
+
+    <!-- Favicons -->
+    <link rel="icon" href="/favicon.ico" sizes="any" />
+    <link rel="icon" type="image/png" sizes="48x48" href="/favicon.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/favicon.png" />
+
     <meta name="generator" content={Astro.generator} />
     <title>{Astro.props.title}</title>
-    <meta name="description" content="A minimalist web developer portfolio built with Astro and TailwindCSS" />
+    <meta
+      name="description"
+      content="A minimalist web developer portfolio built with Astro and TailwindCSS"
+    />
+    <meta name="theme-color" content="#000000" />
   </head>
 
   <body class="bg-[#000000] text-white">
-
-    <!-- Todas las secciones fullwidth se renderizan aquí -->
     <slot />
 
     <Footer />
@@ -53,7 +60,8 @@ import "../styles/global.css";
     </script>
 
     <style is:global>
-      html, body {
+      html,
+      body {
         margin: 0;
         padding: 0;
         box-sizing: border-box;
@@ -62,7 +70,9 @@ import "../styles/global.css";
         min-height: 100%;
       }
 
-      *, *::before, *::after {
+      *,
+      *::before,
+      *::after {
         box-sizing: inherit;
       }
 
