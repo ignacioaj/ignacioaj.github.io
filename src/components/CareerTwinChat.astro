@@ -78,7 +78,6 @@ import ia2 from '../assets/ia2.svg'
              from-[#0b2528]/80 to-transparent"
     ></div>
 
-    <!-- Solo esta caja es más alta -->
     <div
       id="career-twin-messages"
       class="career-twin-scroll h-[20rem] overflow-y-auto px-4 py-4"
@@ -236,22 +235,52 @@ import ia2 from '../assets/ia2.svg'
     chat.dataset.initialized = 'true'
 
     const WELCOME_MESSAGE =
-      "Hi! We are currently working on this feature. You will have to wait!"
+      "Hi! Curious about Ignacio? I am keen on his career path. Ask me anything!😁"
+
+    const BILERPLATE =
+      "Sorry! Ignacio is currently working on this feature🛠️. You will have to wait!"
 
     /*
-     * Creates the welcome message.
+     * Creates an IA² response message.
+     * Used both for the welcome message and BILERPLATE responses.
      */
-    const createWelcomeMessage = () => {
+    const createAssistantMessage = (text) => {
       const wrapper = document.createElement('div')
-      wrapper.className = 'career-twin-initial-message mb-3 flex'
+
+      wrapper.className =
+        'career-twin-initial-message mb-3 flex'
 
       const bubble = document.createElement('div')
+
       bubble.className =
         'max-w-[85%] rounded-2xl rounded-tl-sm ' +
         'bg-teal-100/10 px-3 py-2 ' +
         'text-sm text-teal-50/85'
 
-      bubble.textContent = WELCOME_MESSAGE
+      bubble.textContent = text
+
+      wrapper.appendChild(bubble)
+
+      return wrapper
+    }
+
+    /*
+     * Creates a user message.
+     */
+    const createUserMessage = (text) => {
+      const wrapper = document.createElement('div')
+
+      wrapper.className =
+        'mb-3 flex justify-end'
+
+      const bubble = document.createElement('div')
+
+      bubble.className =
+        'max-w-[85%] rounded-2xl rounded-tr-sm ' +
+        'bg-teal-300/10 px-3 py-2 ' +
+        'text-sm text-teal-50'
+
+      bubble.textContent = text
 
       wrapper.appendChild(bubble)
 
@@ -262,7 +291,9 @@ import ia2 from '../assets/ia2.svg'
      * Reset conversation.
      */
     const resetConversation = () => {
-      messages.replaceChildren(createWelcomeMessage())
+      messages.replaceChildren(
+        createAssistantMessage(WELCOME_MESSAGE)
+      )
 
       input.value = ''
       messages.scrollTop = 0
@@ -318,22 +349,26 @@ import ia2 from '../assets/ia2.svg'
 
       if (!text) return
 
-      const message = document.createElement('div')
-      message.className = 'mb-3 flex justify-end'
-
-      const bubble = document.createElement('div')
-      bubble.className =
-        'max-w-[85%] rounded-2xl rounded-tr-sm ' +
-        'bg-teal-300/10 px-3 py-2 ' +
-        'text-sm text-teal-50'
-
-      bubble.textContent = text
-
-      message.appendChild(bubble)
-      messages.appendChild(message)
+      /*
+       * Add user message.
+       */
+      messages.appendChild(
+        createUserMessage(text)
+      )
 
       input.value = ''
 
+      /*
+       * Add IA² BILERPLATE response.
+       * Same appearance as WELCOME_MESSAGE.
+       */
+      messages.appendChild(
+        createAssistantMessage(BILERPLATE)
+      )
+
+      /*
+       * Scroll to the latest message.
+       */
       messages.scrollTo({
         top: messages.scrollHeight,
         behavior: 'smooth'
