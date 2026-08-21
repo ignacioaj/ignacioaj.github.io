@@ -1,0 +1,91 @@
+---
+import CareerTwinChat from './CareerTwinChat.astro'
+import ia2 from '../assets/ia2.svg'
+---
+
+<div>
+  <button
+    id="career-twin-btn"
+    type="button"
+    aria-label="Ask IA²"
+    aria-expanded="false"
+    title="Ask IA²"
+    class="w-12 h-12 md:w-14 md:h-14 rounded-full
+           bg-white/15 backdrop-blur-md flex items-center justify-center
+           shadow-lg
+           transition-all duration-200
+           hover:shadow-xl"
+  >
+    <img
+      src={ia2.src}
+      alt=""
+      aria-hidden="true"
+      class="w-full h-full object-contain"
+    />
+  </button>
+
+  <CareerTwinChat />
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const button = document.getElementById('career-twin-btn')
+    const chat = document.getElementById('career-twin-chat')
+
+    if (!button || !chat) return
+
+    const openChat = () => {
+      button.setAttribute('aria-expanded', 'true')
+
+      chat.classList.remove(
+        'opacity-0',
+        'pointer-events-none',
+        'translate-y-3',
+        'scale-95'
+      )
+
+      chat.classList.add(
+        'opacity-100',
+        'pointer-events-auto',
+        'translate-y-0',
+        'scale-100'
+      )
+
+      chat.setAttribute('aria-hidden', 'false')
+    }
+
+    const closeChat = () => {
+      button.setAttribute('aria-expanded', 'false')
+
+      chat.classList.add(
+        'opacity-0',
+        'pointer-events-none',
+        'translate-y-3',
+        'scale-95'
+      )
+
+      chat.classList.remove(
+        'opacity-100',
+        'pointer-events-auto',
+        'translate-y-0',
+        'scale-100'
+      )
+
+      chat.setAttribute('aria-hidden', 'true')
+    }
+
+    button.addEventListener('click', () => {
+      const isOpen = button.getAttribute('aria-expanded') === 'true'
+
+      if (isOpen) {
+        closeChat()
+      } else {
+        openChat()
+      }
+    })
+
+    chat.addEventListener('career-twin-chat-close', () => {
+      closeChat()
+    })
+  })
+</script>

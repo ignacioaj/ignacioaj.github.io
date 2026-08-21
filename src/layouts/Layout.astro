@@ -1,7 +1,7 @@
 ---
 import Footer from "../components/Footer.astro";
 import Navbar from "../components/Navbar.astro";
-import ScrollTop from "../components/ScrollTop.astro";
+import RightSideMenu from "../components/RightSideMenu.astro";
 import "../styles/global.css";
 ---
 
@@ -30,7 +30,7 @@ import "../styles/global.css";
 
     <Footer />
 
-    <ScrollTop />
+    <RightSideMenu />
 
     <script is:inline>
       if (!window.ScrollLock) {
@@ -78,6 +78,37 @@ import "../styles/global.css";
 
       * {
         scroll-behavior: smooth;
+      }
+      html {
+        scrollbar-width: thin;
+        scrollbar-color: rgba(64, 224, 208, 0.65) transparent;
+      }
+
+      /* Chrome, Edge, Safari */
+      html::-webkit-scrollbar {
+        width: 8px;
+      }
+
+      html::-webkit-scrollbar-track {
+        background: transparent;
+      }
+
+      html::-webkit-scrollbar-thumb {
+        background: rgba(64, 224, 208, 0.55);
+        border-radius: 999px;
+        border: 2px solid transparent;
+        background-clip: padding-box;
+
+        transition:
+          background 0.25s ease,
+          border-width 0.25s ease,
+          box-shadow 0.25s ease;
+      }
+
+      html::-webkit-scrollbar-thumb:hover {
+        background: #40E0D0;
+        border-width: 1px;
+        box-shadow: 0 0 8px rgba(64, 224, 208, 0.35);
       }
     </style>
   </body>

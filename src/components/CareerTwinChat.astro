@@ -1,0 +1,369 @@
+---
+import ia2 from '../assets/ia2.svg'
+---
+
+<div
+  id="career-twin-chat"
+  class="fixed right-[6.5rem] bottom-5
+         w-[calc(100vw-2.5rem)] max-w-sm
+         overflow-hidden rounded-2xl
+         border border-teal-100/15
+         bg-[#0b2528]/90 backdrop-blur-xl
+         shadow-2xl
+         opacity-0 pointer-events-none translate-x-3 scale-95
+         transition-all duration-200 origin-bottom-right"
+  aria-hidden="true"
+>
+  <!-- Header -->
+  <div
+    class="flex items-center justify-between
+           border-b border-teal-100/15 px-4 py-3"
+  >
+    <div class="flex items-center gap-3">
+      <div
+        class="flex h-9 w-9 items-center justify-center
+               rounded-full bg-teal-300/10"
+        aria-label="IA² — Ignacio Atencia Career Twin"
+      >
+        <img
+          src={ia2.src}
+          alt=""
+          aria-hidden="true"
+          class="h-10 w-10 object-contain"
+        />
+      </div>
+
+      <div>
+        <h2 class="text-sm font-medium text-teal-50">
+          IA²
+        </h2>
+
+        <p class="text-xs text-teal-100/50">
+          Ignacio's AI Assistant✨
+        </p>
+      </div>
+    </div>
+
+    <button
+      id="career-twin-chat-close"
+      type="button"
+      aria-label="Close chat"
+      class="flex h-8 w-8 items-center justify-center
+             rounded-full text-teal-100/50
+             transition hover:bg-teal-100/10
+             hover:text-teal-50"
+    >
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        class="h-5 w-5"
+        fill="none"
+        viewBox="0 0 24 24"
+        stroke="currentColor"
+        stroke-width="1.5"
+      >
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          d="M6 18L18 6M6 6l12 12"
+        />
+      </svg>
+    </button>
+  </div>
+
+  <!-- Messages -->
+  <div class="relative">
+    <div
+      class="pointer-events-none absolute inset-x-0 top-0 z-10
+             h-5 bg-gradient-to-b
+             from-[#0b2528]/80 to-transparent"
+    ></div>
+
+    <!-- Solo esta caja es más alta -->
+    <div
+      id="career-twin-messages"
+      class="career-twin-scroll h-[20rem] overflow-y-auto px-4 py-4"
+    ></div>
+
+    <div
+      class="pointer-events-none absolute inset-x-0 bottom-0 z-10
+             h-6 bg-gradient-to-t
+             from-[#0b2528]/80 to-transparent"
+    ></div>
+  </div>
+
+  <!-- Input -->
+  <form
+    id="career-twin-chat-form"
+    class="flex items-center gap-2
+           border-t border-teal-100/15 p-3"
+  >
+    <input
+      id="career-twin-chat-input"
+      type="text"
+      placeholder="Write a message..."
+      autocomplete="off"
+      class="min-w-0 flex-1 rounded-xl
+             border border-teal-100/15
+             bg-teal-100/10 px-3 py-2
+             text-sm text-teal-50
+             placeholder:text-teal-100/40
+             outline-none transition
+             focus:border-teal-300/50
+             focus:bg-teal-100/15"
+    />
+
+    <button
+      id="career-twin-new-chat"
+      type="button"
+      aria-label="New conversation"
+      title="New conversation"
+      class="group flex h-9 w-9 shrink-0 items-center justify-center
+             rounded-xl border border-teal-100/10
+             bg-teal-100/5 text-teal-100/45
+             transition-all duration-200
+             hover:border-teal-300/30
+             hover:bg-teal-300/10
+             hover:text-teal-200
+             active:scale-95"
+    >
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        class="h-4 w-4 transition-transform duration-200
+               group-hover:rotate-90"
+        fill="none"
+        viewBox="0 0 24 24"
+        stroke="currentColor"
+        stroke-width="1.7"
+      >
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          d="M12 5v14M5 12h14"
+        />
+      </svg>
+    </button>
+
+    <button
+      type="submit"
+      aria-label="Send message"
+      class="flex h-9 w-9 shrink-0 items-center justify-center
+             rounded-xl bg-teal-300 text-[#082124]
+             transition hover:bg-teal-200 active:scale-95"
+    >
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        class="h-4 w-4"
+        fill="none"
+        viewBox="0 0 24 24"
+        stroke="currentColor"
+        stroke-width="2"
+      >
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          d="M5 12h14M13 6l6 6-6 6"
+        />
+      </svg>
+    </button>
+  </form>
+</div>
+
+<style>
+  .career-twin-scroll {
+    scrollbar-width: thin;
+    scrollbar-color: rgba(45, 212, 191, 0.22) transparent;
+    scrollbar-gutter: stable;
+  }
+
+  .career-twin-scroll::-webkit-scrollbar {
+    width: 5px;
+  }
+
+  .career-twin-scroll::-webkit-scrollbar-track {
+    background: transparent;
+    margin-block: 10px;
+  }
+
+  .career-twin-scroll::-webkit-scrollbar-thumb {
+    background: rgba(45, 212, 191, 0.18);
+    border-radius: 999px;
+    border: 1px solid transparent;
+    background-clip: padding-box;
+  }
+
+  .career-twin-scroll:hover::-webkit-scrollbar-thumb {
+    background: rgba(45, 212, 191, 0.38);
+    background-clip: padding-box;
+  }
+
+  .career-twin-scroll::-webkit-scrollbar-thumb:active {
+    background: rgba(45, 212, 191, 0.55);
+    background-clip: padding-box;
+  }
+
+  .career-twin-scroll:hover {
+    scrollbar-color: rgba(45, 212, 191, 0.38) transparent;
+  }
+</style>
+
+<script>
+  const initCareerTwinChat = () => {
+    const chat = document.getElementById('career-twin-chat')
+    const closeBtn = document.getElementById('career-twin-chat-close')
+    const newChatBtn = document.getElementById('career-twin-new-chat')
+    const form = document.getElementById('career-twin-chat-form')
+    const input = document.getElementById('career-twin-chat-input')
+    const messages = document.getElementById('career-twin-messages')
+
+    if (
+      !chat ||
+      !closeBtn ||
+      !newChatBtn ||
+      !form ||
+      !input ||
+      !messages
+    ) {
+      return
+    }
+
+    /*
+     * Prevent duplicate initialization.
+     */
+    if (chat.dataset.initialized === 'true') {
+      return
+    }
+
+    chat.dataset.initialized = 'true'
+
+    const WELCOME_MESSAGE =
+      "Hi! We are currently working on this feature. You will have to wait!"
+
+    /*
+     * Creates the welcome message.
+     */
+    const createWelcomeMessage = () => {
+      const wrapper = document.createElement('div')
+      wrapper.className = 'career-twin-initial-message mb-3 flex'
+
+      const bubble = document.createElement('div')
+      bubble.className =
+        'max-w-[85%] rounded-2xl rounded-tl-sm ' +
+        'bg-teal-100/10 px-3 py-2 ' +
+        'text-sm text-teal-50/85'
+
+      bubble.textContent = WELCOME_MESSAGE
+
+      wrapper.appendChild(bubble)
+
+      return wrapper
+    }
+
+    /*
+     * Reset conversation.
+     */
+    const resetConversation = () => {
+      messages.replaceChildren(createWelcomeMessage())
+
+      input.value = ''
+      messages.scrollTop = 0
+    }
+
+    /*
+     * Close chat.
+     */
+    const closeChat = () => {
+      resetConversation()
+
+      chat.classList.add(
+        'opacity-0',
+        'pointer-events-none',
+        'translate-x-3',
+        'scale-95'
+      )
+
+      chat.classList.remove(
+        'opacity-100',
+        'pointer-events-auto',
+        'translate-x-0',
+        'scale-100'
+      )
+
+      chat.setAttribute('aria-hidden', 'true')
+
+      chat.dispatchEvent(
+        new CustomEvent('career-twin-chat-close')
+      )
+    }
+
+    /*
+     * Close.
+     */
+    closeBtn.addEventListener('click', closeChat)
+
+    /*
+     * New conversation.
+     */
+    newChatBtn.addEventListener('click', () => {
+      resetConversation()
+      input.focus()
+    })
+
+    /*
+     * Send message.
+     */
+    form.addEventListener('submit', (event) => {
+      event.preventDefault()
+
+      const text = input.value.trim()
+
+      if (!text) return
+
+      const message = document.createElement('div')
+      message.className = 'mb-3 flex justify-end'
+
+      const bubble = document.createElement('div')
+      bubble.className =
+        'max-w-[85%] rounded-2xl rounded-tr-sm ' +
+        'bg-teal-300/10 px-3 py-2 ' +
+        'text-sm text-teal-50'
+
+      bubble.textContent = text
+
+      message.appendChild(bubble)
+      messages.appendChild(message)
+
+      input.value = ''
+
+      messages.scrollTo({
+        top: messages.scrollHeight,
+        behavior: 'smooth'
+      })
+    })
+
+    /*
+     * Initial state.
+     */
+    resetConversation()
+  }
+
+  /*
+   * Astro page load / navigation.
+   */
+  document.addEventListener(
+    'astro:page-load',
+    initCareerTwinChat
+  )
+
+  /*
+   * Fallback for normal initial page load.
+   */
+  if (document.readyState === 'loading') {
+    document.addEventListener(
+      'DOMContentLoaded',
+      initCareerTwinChat,
+      { once: true }
+    )
+  } else {
+    initCareerTwinChat()
+  }
+</script>
