@@ -1,6 +1,6 @@
 ---
 import Card from "../components/Card.astro";
-const { name, subtitle } = Astro.props;
+import interests from "../../public/collections/interests.json";
 ---
 
 <section
@@ -25,44 +25,27 @@ const { name, subtitle } = Astro.props;
     </h2>
 
     <article class="grid gap-8 md:grid-cols-3 w-full">
+      {interests.map((interest) => (
+        <Card className="flex flex-col transform transition-transform duration-300 hover:scale-105">
+          <img
+            src={interest.image}
+            alt={interest.title}
+            class="w-full h-48 object-cover rounded-md mb-4 transition-transform duration-300 hover:scale-110"
+          />
 
-      <!-- Healthy Lifestyle & Science -->
-      <Card className="flex flex-col transform transition-transform duration-300 hover:scale-105">
-        <img src="src/assets/healthy.jpg" alt="Healthy Lifestyle" class="w-full h-48 object-cover rounded-md mb-4 transition-transform duration-300 hover:scale-110" />
-        <h3 class="card-title mb-2">Healthy Lifestyle & Science</h3>
-        <p class="card-text mb-2">
-          I love maintaining a healthy and active lifestyle. Running is one of my favorite ways to challenge myself and push my limits.
-        </p>
-        <p class="card-text">
-          I am fascinated by science and passionate about continuous learning. Teaching and guiding people allows me to communicate complex ideas clearly, combining curiosity with inspiration.
-        </p>
-      </Card>
+          <h3 class="card-title mb-2">
+            {interest.title}
+          </h3>
 
-      <!-- Cooking & Gardening -->
-      <Card className="flex flex-col transform transition-transform duration-300 hover:scale-105">
-        <img src="src/assets/cuisine.jpg" alt="Cooking & Gardening" class="w-full h-48 object-cover rounded-md mb-4 transition-transform duration-300 hover:scale-110" />
-        <h3 class="card-title mb-2">Cooking & Gardening</h3>
-        <p class="card-text mb-2">
-          Cooking is a way to explore cultures, experiment creatively, and connect with memories and people. I enjoy learning from cuisines worldwide, improvising dishes, and adding a personal touch.
-        </p>
-        <p class="card-text">
-          Gardening aromatic herbs recently has complemented my cooking, bringing freshness and personal touch to my meals.
-        </p>
-      </Card>
-
-      <!-- Video Games & Creativity -->
-      <Card className="flex flex-col transform transition-transform duration-300 hover:scale-105">
-        <img src="src/assets/rpg.png" alt="RPG Game" class="w-full h-48 object-cover rounded-md mb-4 transition-transform duration-300 hover:scale-110" />
-        <h3 class="card-title mb-2">Video Games & Creativity</h3>
-        <p class="card-text mb-2">
-          I have a strong drive to generate and create rather than simply consume. I enjoy exploring and discovering diverse fields that inspire me to bring ideas to life.
-        </p>
-        <p class="card-text">
-          Among my interests, I particularly enjoy creating and playing video games which let me design worlds, craft characters, and refine skills in drawing, pixel art, or storytelling.
-        </p>
-      </Card>
-
+          {interest.description.map((paragraph) => (
+            <p class="card-text mb-2 last:mb-0">
+              {paragraph}
+            </p>
+          ))}
+        </Card>
+      ))}
     </article>
+
   </div>
 </section>
 
@@ -77,24 +60,24 @@ const { name, subtitle } = Astro.props;
   }
 
   .title-futuristic {
-      position: relative;
-      display: inline-block;
-    }
+    position: relative;
+    display: inline-block;
+  }
 
-    .title-futuristic::after {
-      content: '';
-      position: absolute;
-      left: 0;
-      bottom: -6px;
-      width: 50%;
-      height: 4px;
-      background: linear-gradient(90deg, #0ff, #2CA3A3);
-      border-radius: 2px;
-      transform: skewX(-20deg);
-      transition: width 0.3s ease;
-    }
+  .title-futuristic::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -6px;
+    width: 50%;
+    height: 4px;
+    background: linear-gradient(90deg, #0ff, #2CA3A3);
+    border-radius: 2px;
+    transform: skewX(-20deg);
+    transition: width 0.3s ease;
+  }
 
-    .title-futuristic:hover::after {
-      width: 70%;
-    }
+  .title-futuristic:hover::after {
+    width: 70%;
+  }
 </style>
