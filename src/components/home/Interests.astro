@@ -1,6 +1,15 @@
 ---
+import { Image } from "astro:assets";
 import Card from "../shared/Card.astro";
-import interests from "../../assets/collections/interests.json";
+import INTERESTS from "../../assets/collections/interests.json";
+
+const interestImages = import.meta.glob(
+  "../../assets/images/interests/*",
+  {
+    eager: true,
+    import: "default",
+  }
+);
 ---
 
 <section
@@ -17,33 +26,54 @@ import interests from "../../assets/collections/interests.json";
     background-repeat: no-repeat, no-repeat, no-repeat, no-repeat;
   "
 >
-  <div class="section-content flex flex-col items-center text-center px-4 py-16 md:py-24 max-w-6xl w-full">
+  <div
+    class="section-content flex flex-col items-center text-center px-4 py-16 md:py-24 max-w-6xl w-full"
+  >
 
-    <!-- Título -->
-    <h2 class="text-3xl md:text-5xl font-bold text-white mb-12 title-futuristic">
+    <!-- TITLE -->
+    <h2
+      class="text-3xl md:text-5xl font-bold text-white mb-12 title-futuristic"
+    >
       Other Interests
     </h2>
 
+    <!-- CARDS -->
     <article class="grid gap-8 md:grid-cols-3 w-full">
-      {interests.map((interest) => (
-        <Card className="flex flex-col transform transition-transform duration-300 hover:scale-105">
-          <img
-            src={interest.image}
-            alt={interest.title}
-            class="w-full h-48 object-cover rounded-md mb-4 transition-transform duration-300 hover:scale-110"
-          />
+      {INTERESTS.map((interest) => {
+        const imagePath = `../../assets/images/interests/${interest.image}`;
+        const image = interestImages[imagePath];
 
-          <h3 class="card-title mb-2">
-            {interest.title}
-          </h3>
+        return (
+          <Card
+            className="flex flex-col transform transition-transform duration-300 hover:scale-105"
+          >
 
-          {interest.description.map((paragraph) => (
-            <p class="card-text mb-2 last:mb-0">
-              {paragraph}
-            </p>
-          ))}
-        </Card>
-      ))}
+            <!-- IMAGE -->
+            {image && (
+              <Image
+                src={image}
+                alt={interest.title}
+                width={600}
+                height={400}
+                class="w-full h-48 object-cover rounded-md mb-4 transition-transform duration-300 hover:scale-110"
+              />
+            )}
+
+            <!-- TITLE -->
+            <h3 class="card-title mb-2">
+              {interest.title}
+            </h3>
+
+            <!-- DESCRIPTION -->
+            {interest.description.map((paragraph) => (
+              <p class="card-text mb-2 last:mb-0">
+                {paragraph}
+              </p>
+            ))}
+
+          </Card>
+        );
+      })}
     </article>
 
   </div>
@@ -51,7 +81,7 @@ import interests from "../../assets/collections/interests.json";
 
 <style>
   .card-title {
-    color: #40E0D0;
+    color: #40e0d0;
     font-weight: 600;
   }
 
@@ -65,13 +95,13 @@ import interests from "../../assets/collections/interests.json";
   }
 
   .title-futuristic::after {
-    content: '';
+    content: "";
     position: absolute;
     left: 0;
     bottom: -6px;
     width: 50%;
     height: 4px;
-    background: linear-gradient(90deg, #0ff, #2CA3A3);
+    background: linear-gradient(90deg, #0ff, #2ca3a3);
     border-radius: 2px;
     transform: skewX(-20deg);
     transition: width 0.3s ease;

@@ -1,6 +1,14 @@
 ---
 import { Image } from "astro:assets";
 import PROJECTS from "../../assets/collections/projects.json";
+
+const projectImages = import.meta.glob(
+  "../../assets/images/projects/*",
+  {
+    eager: true,
+    import: "default",
+  }
+);
 ---
 
 <style>
@@ -25,6 +33,7 @@ import PROJECTS from "../../assets/collections/projects.json";
       <h2 class="text-4xl md:text-5xl font-bold text-white">
         Projects
       </h2>
+
       <div class="mx-auto mt-4 w-24 h-[3px] bg-gradient-to-r from-[#4FD1C5] via-[#81E6D9] to-[#4FD1C5] rounded-full animate-pulse"></div>
     </div>
 
@@ -35,17 +44,20 @@ import PROJECTS from "../../assets/collections/projects.json";
       <button
         id="scrollLeft"
         class="hidden absolute left-2 top-1/2 -translate-y-1/2 z-20
-               w-12 h-12 flex items-center justify-center
+               w-12 h-12 items-center justify-center
                rounded-full bg-white/10 backdrop-blur-md
                border border-white/20 text-white
                hover:bg-white/20 hover:scale-105 transition"
+        aria-label="Previous projects"
       >
         <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none">
-          <path d="M15 18l-6-6 6-6"
-                stroke="currentColor"
-                stroke-width="2"
-                stroke-linecap="round"
-                stroke-linejoin="round"/>
+          <path
+            d="M15 18l-6-6 6-6"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          />
         </svg>
       </button>
 
@@ -53,17 +65,20 @@ import PROJECTS from "../../assets/collections/projects.json";
       <button
         id="scrollRight"
         class="hidden absolute right-2 top-1/2 -translate-y-1/2 z-20
-               w-12 h-12 flex items-center justify-center
+               w-12 h-12 items-center justify-center
                rounded-full bg-white/10 backdrop-blur-md
                border border-white/20 text-white
                hover:bg-white/20 hover:scale-105 transition"
+        aria-label="Next projects"
       >
         <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none">
-          <path d="M9 6l6 6-6 6"
-                stroke="currentColor"
-                stroke-width="2"
-                stroke-linecap="round"
-                stroke-linejoin="round"/>
+          <path
+            d="M9 6l6 6-6 6"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          />
         </svg>
       </button>
 
@@ -79,10 +94,14 @@ import PROJECTS from "../../assets/collections/projects.json";
         {PROJECTS.map((project) => {
           const { name, description, urlImg, link } = project;
 
+          const imagePath = `../../assets/images/projects/${urlImg}`;
+          const image = projectImages[imagePath];
+
           return (
             <a
               href={link}
               target="_blank"
+              rel="noopener noreferrer"
               class="snap-center min-w-[320px] max-w-[320px] group flex flex-col
                      rounded-3xl bg-gray-800/80 border-2 border-[#4FD1C5]/60
                      shadow-[0_0_10px_rgba(79,209,197,0.15)]
@@ -93,13 +112,15 @@ import PROJECTS from "../../assets/collections/projects.json";
             >
               <!-- IMAGE -->
               <div class="w-full h-56 overflow-hidden">
-                <Image
-                  src={urlImg}
-                  alt={name}
-                  width={400}
-                  height={400}
-                  class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-                />
+                {image && (
+                  <Image
+                    src={image}
+                    alt={name}
+                    width={400}
+                    height={400}
+                    class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                  />
+                )}
               </div>
 
               <!-- CONTENT -->
@@ -107,6 +128,7 @@ import PROJECTS from "../../assets/collections/projects.json";
                 <h3 class="text-xl font-semibold text-white mb-2 group-hover:text-[#4FD1C5] transition-colors">
                   {name}
                 </h3>
+
                 <p class="text-gray-200 text-sm flex-1">
                   {description}
                 </p>
@@ -140,7 +162,9 @@ import PROJECTS from "../../assets/collections/projects.json";
 
         carousel.scrollLeft = start + (end - start) * eased;
 
-        if (progress < 1) requestAnimationFrame(animate);
+        if (progress < 1) {
+          requestAnimationFrame(animate);
+        }
       }
 
       requestAnimationFrame(animate);
