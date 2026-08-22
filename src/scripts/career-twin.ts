@@ -28,6 +28,7 @@ const CLOSED_CLASSES = [
 ]
 
 const initCareerTwin = () => {
+
   const chat = document.getElementById(CHAT_ID)
   const button = document.getElementById(BUTTON_ID)
   const closeBtn = document.getElementById(CLOSE_ID)

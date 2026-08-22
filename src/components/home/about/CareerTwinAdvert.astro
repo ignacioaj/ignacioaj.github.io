@@ -29,33 +29,6 @@ import ia2 from '../../../assets/svg/ia2.svg'
   </button>
 </div>
 
-<script>
-  document.addEventListener('DOMContentLoaded', () => {
-    const link = document.getElementById('career-twin-link')
-    const chat = document.getElementById('career-twin-chat')
-
-    if (!link || !chat) return
-
-    const openChat = () => {
-      chat.classList.remove(
-        'opacity-0',
-        'pointer-events-none',
-        'translate-y-3',
-        'scale-95'
-      )
-
-      chat.classList.add(
-        'opacity-100',
-        'pointer-events-auto',
-        'translate-y-0',
-        'scale-100'
-      )
-    }
-
-    link.addEventListener('click', openChat)
-  })
-</script>
-
 <style>
   :global(:root) {
     --turquoise: #40e0d0;
