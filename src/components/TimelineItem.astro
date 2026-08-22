@@ -4,7 +4,7 @@ import TimelineModal from "./TimelineItemModal.astro";
 interface Props {
   title: string;
   date: string;
-  description: string;
+  description: string[];
   badgeText?: string;
   isAlwaysOpen?: boolean;
 }
@@ -47,15 +47,20 @@ const modalId = title.toLowerCase().replace(/\s+/g, "-");
 
     <!-- CONTENT -->
     {isAlwaysOpen ? (
-      <div class="mb-4 p-4 rounded-md border border-white/10 bg-white/5">
-        <p class="text-sm text-white/80 leading-relaxed">
-          {description}
-        </p>
+      <div class="experience-highlights mb-4">
+        <ul class="space-y-3">
+          {description.map((item) => (
+            <li class="experience-bullet">
+              <span class="bullet-marker"></span>
+              <span>{item}</span>
+            </li>
+          ))}
+        </ul>
       </div>
     ) : (
       <>
         <button
-          class="inline-flex items-center px-3 py-1 border border-white/20 rounded-md bg-white/5 text-xs text-white/70 hover:text-white w-fit mb-4"
+          class="inline-flex items-center px-3 py-1 border border-white/20 rounded-md bg-white/5 text-xs text-white/70 hover:text-white hover:border-[#40E0D0]/40 transition-colors w-fit mb-4"
           onclick={`document.getElementById('${modalId}').showModal(); window.ScrollLock.lock();`}
         >
           Show more
@@ -74,3 +79,31 @@ const modalId = title.toLowerCase().replace(/\s+/g, "-");
 
   </div>
 </li>
+
+<style>
+  .experience-highlights {
+    padding: 1rem;
+    border-radius: 0.5rem;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    background: rgba(255, 255, 255, 0.04);
+  }
+
+  .experience-bullet {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem;
+    color: rgba(255, 255, 255, 0.82);
+    font-size: 0.875rem;
+    line-height: 1.65;
+  }
+
+  .bullet-marker {
+    flex-shrink: 0;
+    width: 0.4rem;
+    height: 0.4rem;
+    margin-top: 0.55rem;
+    border-radius: 9999px;
+    background: #40e0d0;
+    box-shadow: 0 0 8px rgba(64, 224, 208, 0.65);
+  }
+</style>

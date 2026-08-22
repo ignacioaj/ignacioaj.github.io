@@ -3,7 +3,7 @@ interface Props {
   id: string;
   title: string;
   date: string;
-  description: string;
+  description: string[];
 }
 
 const { id, title, date, description } = Astro.props;
@@ -14,7 +14,6 @@ const { id, title, date, description } = Astro.props;
   class="w-full max-w-lg rounded-lg p-0 text-white bg-[#061a1a] border border-white/10"
   onclose="window.ScrollLock?.unlock?.()"
 >
-
   <!-- HEADER BAR -->
   <div class="flex items-center justify-between px-6 py-3 border-b border-white/10">
     <h2 class="text-sm font-semibold text-[#40E0D0] tracking-wide">
@@ -22,8 +21,9 @@ const { id, title, date, description } = Astro.props;
     </h2>
 
     <button
-      class="text-white/60 hover:text-white text-lg leading-none"
+      class="text-white/60 hover:text-white text-lg leading-none transition-colors"
       onclick={`document.getElementById('${id}').close()`}
+      aria-label="Close"
     >
       ✕
     </button>
@@ -31,8 +31,9 @@ const { id, title, date, description } = Astro.props;
 
   <div class="p-6 relative">
 
-    <div class="flex items-center gap-5 mb-4 pl-2">
-      <span class="flex items-center justify-center size-6 bg-blue-300 rounded-full ring-8 ring-blue-100 dark:ring-blue-950/60 dark:bg-blue-800">
+    <!-- EXPERIENCE HEADER -->
+    <div class="flex items-center gap-5 mb-5 pl-2">
+      <span class="flex items-center justify-center size-6 bg-blue-300 rounded-full ring-8 ring-blue-100 dark:ring-blue-950/60 dark:bg-blue-800 shrink-0">
         <slot name="icon" />
       </span>
 
@@ -40,23 +41,29 @@ const { id, title, date, description } = Astro.props;
         <h3 class="text-lg font-semibold text-[#40E0D0] leading-tight">
           {title}
         </h3>
+
         <time class="text-sm text-white/70">
           {date}
         </time>
       </div>
     </div>
 
-    <div class="mb-4 p-4 rounded-md border border-white/10 bg-white/5">
-      <p class="text-sm text-white/80 leading-relaxed">
-        {description}
-      </p>
+    <!-- HIGHLIGHTS -->
+    <div class="experience-highlights">
+      <ul class="space-y-3">
+        {description.map((item) => (
+          <li class="experience-bullet">
+            <span class="bullet-marker"></span>
+            <span>{item}</span>
+          </li>
+        ))}
+      </ul>
     </div>
 
   </div>
 </dialog>
 
 <style>
-  /* 🌑 darker + more focus */
   dialog::backdrop {
     background: rgba(0, 0, 0, 0.45);
     backdrop-filter: blur(2px);
@@ -71,9 +78,36 @@ const { id, title, date, description } = Astro.props;
       opacity: 0;
       transform: scale(0.995);
     }
+
     to {
       opacity: 1;
       transform: scale(1);
     }
+  }
+
+  .experience-highlights {
+    padding: 1rem;
+    border-radius: 0.5rem;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    background: rgba(255, 255, 255, 0.04);
+  }
+
+  .experience-bullet {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem;
+    color: rgba(255, 255, 255, 0.82);
+    font-size: 0.875rem;
+    line-height: 1.65;
+  }
+
+  .bullet-marker {
+    flex-shrink: 0;
+    width: 0.4rem;
+    height: 0.4rem;
+    margin-top: 0.55rem;
+    border-radius: 9999px;
+    background: #40e0d0;
+    box-shadow: 0 0 8px rgba(64, 224, 208, 0.65);
   }
 </style>
