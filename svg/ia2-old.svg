@@ -1,0 +1,52 @@
+<svg
+        xmlns="http://www.w3.org/2000/svg"
+        class="h-6 w-6 text-teal-300"
+        viewBox="0 0 32 32"
+        fill="none"
+        aria-hidden="true"
+>
+    <!-- I -->
+    <path
+            d="M7.5 10.5V21.5"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+    />
+
+    <!-- A -->
+    <path
+            d="M10.5 21.5L14.5 10.5L18.5 21.5
+                 M11.8 18H17.2"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+    />
+
+    <!-- Main sparkle / ² -->
+    <path
+            d="M23.1 5.8
+                 L24.24 9.16
+                 L27.6 10.3
+                 L24.24 11.44
+                 L23.1 14.8
+                 L21.96 11.44
+                 L18.6 10.3
+                 L21.96 9.16Z"
+            fill="currentColor"
+    />
+
+    <!-- Secondary sparkle -->
+    <path
+            d="M26.45 14.175
+                 L27.11 16.54
+                 L29.18 17.18
+                 L27.11 17.82
+                 L26.45 20.185
+                 L25.79 17.82
+                 L23.72 17.18
+                 L25.79 16.54Z"
+            fill="currentColor"
+            opacity=".72"
+    />
+</svg>
